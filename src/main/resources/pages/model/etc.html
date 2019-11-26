@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+</head>
+<body>
+    <div id="etc" th:fragment="etc">
+        <div id="git" class="etc">
+            <a href="javascript:void(0)">
+                <i>📕</i>
+                <span>git</span>
+            </a>
+            <div class="etc-show">
+                <div id="git-box">
+                    <input id="github" type="text" disabled="disabled" value="https://github.com/KeepYoungerMao/keep-younger-main">
+                    <label for="github" onclick="copyGit()">复制</label>
+                </div>
+            </div>
+        </div>
+        <div id="share" class="etc">
+            <a href="javascript:void(0)">
+                <i>😄</i>
+                <span>赞助</span>
+            </a>
+            <div class="etc-show">
+                <div id="share-box">
+                    <img th:src="@{/img/share.png}" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="tell" class="etc">
+            <a href="javascript:void(0)">
+                <i>😭</i>
+                <span>联系</span>
+            </a>
+            <div class="etc-show">
+                <div id="tell-box">
+                    <div>📞&nbsp;&nbsp;&nbsp;&nbsp;0573-99888888</div>
+                    <div>📫&nbsp;&nbsp;&nbsp;&nbsp;zongxing_mao@163.com</div>
+                </div>
+            </div>
+        </div>
+        <div id="bug" class="etc">
+            <a th:href="@{/about/feedback}">
+                <i>🙂</i>
+                <span>反馈</span>
+            </a>
+        </div>
+        <div id="scroll" class="etc">
+            <a href="javascript:void(0)">
+                <i>🏠</i>
+                <span>顶部</span>
+            </a>
+        </div>
+    </div>
+</body>
+<script>
+    function copyGit() {
+        console.info("复制成功")
+    }
+</script>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>建议反馈</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/model.css}">
+</head>
+<style>
+    .msg,.mxg{
+        width: 100%;
+        text-align: center;
+    }
+    .msg{
+        height: 60px;
+        line-height: 60px;
+    }
+    .mxg{
+        height: 120px;
+        line-height: 120px;
+    }
+    .msg label,.mxg label{
+        margin-right: 10px;
+        display: inline-block;
+        width: 100px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+    }
+    .msg input{
+        height: 28px;
+        width: 400px;
+        padding: 0 10px;
+        outline: none;
+    }
+    .mxg textarea{
+        height: 110px;
+        vertical-align: middle;
+        width: 400px;
+        padding: 0 10px;
+        outline: none;
+    }
+    .logo{
+        height: 80px;
+        text-align: center;
+        margin-top: 15px;
+    }
+    .logo img{
+        height: 80px;
+        width: 160px;
+    }
+    .logo span{
+        display: inline-block;
+        font-size: 16px;
+        margin-right: 10px;
+        vertical-align: top;
+        padding-top: 40px;
+        font-weight: bold;
+        color: green;
+    }
+    .btn{
+        height: 80px;
+        line-height: 100px;
+        margin: 10px auto;
+        text-align: center;
+    }
+    .btn button{
+        padding: 4px 100px;
+        outline: none;
+        font-size: 15px;
+        background-color: #009c00;
+        color: #ffffff;
+        border: 1px solid #009c00;
+        cursor: pointer;
+    }
+    .btn button:hover,.btn button:active,.btn button:focus{
+        background-color: green;
+    }
+    input:focus,input:hover,textarea:focus,textarea:hover{
+        border: 1px solid #009c00;
+    }
+</style>
+<body>
+<div th:replace="model/head::top"></div>
+<div class="box">
+    <div class="logo">
+        <span>反馈到</span>
+        <img th:src="@{/img/keep_younger.png}" alt="">
+    </div>
+    <div class="msg">
+        <label for="title">您要说的方面:</label>
+        <input id="title" type="text" placeholder="标题">
+    </div>
+    <div class="mxg">
+        <label for="advise">您的建议:</label>
+        <textarea id="advise" maxlength="200"></textarea>
+    </div>
+    <div class="msg">
+        <label for="name">您的名字:</label>
+        <input id="name" type="text" placeholder="如果您愿意">
+    </div>
+    <div class="msg">
+        <label for="email">您的邮箱:</label>
+        <input id="email" type="email" placeholder="我们将会主动联系您">
+    </div>
+    <div class="btn">
+        <button onclick="feedback()">提交反馈</button>
+    </div>
+</div>
+<div th:replace="model/foot::foot"></div>
+<div th:replace="model/etc::etc"></div>
+</body>
+<script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:src="@{/js/util/pop.js}"></script>
+<script th:inline="javascript">
+    $(function () {
+        
+    });
+    
+    function feedback() {
+        var title = $("#title").val();
+        var advise = $("#advise").val();
+        var name = $("#name").val();
+        var email = $("#email").val();
+        if(null == title || '' == title){
+            tips("请填写一下标题");
+            return;
+        }
+        if(title.length > 20){
+            tips("标题不要超过20个字哦");
+            return;
+        }
+        if(null == advise || '' == advise){
+            tips("请填写一下建议信息");
+            return;
+        }
+        if(advise.length > 200){
+            tips("写的建议不要超过200字");
+            return;
+        }
+        if(null == email || '' == email){
+            tips("请留个邮箱吧");
+            return;
+        }
+        $(".btn button").css("disabled","disabled");
+        var feedback = {
+            title: title,
+            advise: advise,
+            name: name,
+            email: email
+        };
+        $.ajax({
+            url: '/about/feedback',
+            type: "POST",
+            data: JSON.stringify(feedback),
+            headers:{"Content-Type":"application/json"},
+            success: function (data) {
+                setTimeout(function () {
+                    pre(data);
+                    $(".btn button").css("disabled","");
+                },1000);
+            }
+        });
+    }
+    
+    function pre(msg) {
+        if(undefined != msg && null != msg && '' != msg){
+            if(msg.code == 200){
+                $("#title").val('');
+                $("#advise").val('');
+                $("#name").val('');
+                $("#email").val('');
+                pop("您的建议我们已经收到！感谢您的帮助！",1,"好的");
+            } else {
+                pop("您的建议没有保存。我们检测到："+msg.data.err_msg+"。您还需要再试一下么？",2,'不了','再试一下','onclick="noFeed()"')
+            }
+        }
+    }
+    
+    function noFeed() {
+        window.location.href = "/";
+    }
+</script>
+</html>

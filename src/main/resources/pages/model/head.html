@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+</head>
+<body>
+<div id="top" th:fragment="top">
+    <ul class="top-menu-box">
+        <li class="top-logo">
+            <a th:href="@{/}"><img th:src="@{/img/keep_younger.png}" alt="keep younger"></a>
+        </li>
+        <li class="top-menu">
+            <a href="javascript:void(0)">射线</a>
+            <div class="top-menu-item">
+                <ul>
+                    <li><a class="_menu" th:href="@{/ray/tv}">电视</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">哔哩哔哩</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="top-menu">
+            <a href="javascript:void(0)">地球</a>
+            <div class="top-menu-item">
+                <ul>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">动物</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">植物</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">物种分类</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="top-menu">
+            <a href="javascript:void(0)">万物</a>
+            <div class="top-menu-item">
+                <ul>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">中草药</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">西药</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="top-menu">
+            <a href="javascript:void(0)">斑斓</a>
+            <div class="top-menu-item">
+                <ul>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">图片</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="top-menu">
+            <a href="javascript:void(0)">养分</a>
+            <div class="top-menu-item">
+                <ul>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">食物</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">食材</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">营养排行</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">食谱</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">体质</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="top-menu">
+            <a href="javascript:void(0)">古韵</a>
+            <div class="top-menu-item">
+                <ul>
+                    <li><a class="_menu" th:href="@{/ray/tv}">百家姓</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">古籍</a></li>
+                    <li><a class="_menu" th:href="@{/ray/tv}">佛经</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">历史人物</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">成语</a></li>
+                    <li><a class="_menu" th:href="@{/ray/bilibili}">诗词</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="top-menu">
+            <a th:href="@{/about/about}">关于</a>
+        </li>
+    </ul>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+</head>
+<body>
+    <div id="foot" th:fragment="foot">
+        <div class="link">
+            <a th:href="@{/about/about}">关于我们</a>
+            <span>|</span>
+            <a th:href="@{/about/copyright}">版权申明</a>
+            <span>|</span>
+            <a th:href="@{/about/service}">服务申明</a>
+            <span>|</span>
+            <a th:href="@{/about/cooperate}">投资合作</a>
+            <span>|</span>
+            <a th:href="@{/about/help}">在线帮助</a>
+            <span>|</span>
+            <a th:href="@{/about/feedback}">建议反馈</a>
+        </div>
+        <div class="copyright">
+            <span>copyright @ www.keepyounger.top 没有什么能阻挡，你对自由的向往</span>
+        </div>
+    </div>
+</body>
+
+</html>
