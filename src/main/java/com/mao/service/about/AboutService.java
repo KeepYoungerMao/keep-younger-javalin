@@ -1,6 +1,6 @@
 package com.mao.service.about;
 
-import com.mao.about.FeedbackMapper;
+import com.mao.mapper.FeedbackMapper;
 import com.mao.config.MybatisConfigure;
 import com.mao.entity.about.FeedBack;
 import com.mao.service.BaseService;

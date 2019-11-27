@@ -1,4 +1,4 @@
-package com.mao.about;
+package com.mao.mapper;
 
 import com.mao.entity.about.FeedBack;
 import org.apache.ibatis.annotations.Mapper;
