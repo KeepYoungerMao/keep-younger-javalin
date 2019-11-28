@@ -6,29 +6,46 @@
     <title>关于KeepYounger</title>
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
     <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/css/ky.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 </head>
 
 <body>
 <div th:replace="model/head::top"></div>
 <div class="contain">
     <div class="box">
-        <table border="1" cellpadding="0" cellspacing="0">
-            <tr>
+        <table class="ky" border="0" cellpadding="0" cellspacing="0">
+            <tr class="ky-title">
                 <td colspan="2">
-                    <span>关于</span><span>Keep Younger</span>
+                    <span class="ky-logo-pre">关于</span><span class="ky-logo">Keep Younger</span>
                 </td>
             </tr>
-            <tr>
-                <td>
+            <tr class="ky-content">
+                <td class="ky-list">
                     <ul>
-                        <li>关于我们</li>
-                        <li>版权申明</li>
-                        <li>服务申明</li>
-                        <li>投资合作</li>
-                        <li>在线帮助</li>
+                        <li><span class="ky-active"> > </span><a th:href="@{/about/about}">关于我们</a></li>
+                        <li><a th:href="@{/about/copyright}">版权申明</a></li>
+                        <li><a th:href="@{/about/service}">服务申明</a></li>
+                        <li><a th:href="@{/about/cooperate}">投资合作</a></li>
+                        <li><a th:href="@{/about/help}">在线帮助</a></li>
                     </ul>
                 </td>
-                <td>world</td>
+                <td class="ky-text">
+                    <p>
+                        <b>网站简介:</b>
+                    </p>
+                    <p>本网站属于私人搭建网站，旨在技术交流，吸取建议，多交朋友。不涉及任何盈利目的。</p>
+                    <p>本人在业余时间弄的一个小网站，生活和工作中积累到的一些东西都会在这里试试手，看看效果。</p>
+                    <p>如果效果可以，便会收集一些数据，在此网站上进行展示。但主要还是以快乐生活，快乐工作为目的。</p>
+                    <p>所以舔求大家不要攻击人家的小服务器啦。</p>
+                    <p>一个 </p>
+                    <p>很小</p>
+                    <p>很小</p>
+                    <p> 的服务器。</p>
+                    <p>而且也不要告人家。本人不做商业用途的。</p>
+                    <p>如果有一天，这个网站打不开了，访问不了了。</p>
+                    <p>不要问为什么，那肯定是我没钱了。付不起服务器了~~~</p>
+                </td>
             </tr>
         </table>
     </div>

@@ -90,8 +90,8 @@ body{
 /* footer */
 #foot{
     padding-top: 10px;
-    box-shadow: 0 -3px 5px #e1e1e1;
-    background-color: #f1f1f1;
+    box-shadow: 0 -3px 5px #bfbfbf;
+    background-color: #d3d3d3;
     text-align: center;
     height: 60px;
     font-size: 13px;
@@ -118,13 +118,13 @@ body{
 #etc{
     position: fixed;
     right: 10px;
-    bottom: 140px;
+    bottom: 30%;
     width: 40px;
     z-index: 1999;
     height: 205px;
     font-size: 14px;
-    box-shadow: 0 0 5px #a1a1a1;
-    background-color: #f1f1f1;
+    box-shadow: 0 0 5px #d1d1d1;
+    background-color: #fefefe;
 }
 #git{
     border-top: 1px solid #e1e1e1;
@@ -145,6 +145,10 @@ body{
     height: 40px;
     text-decoration: none;
     color: #ffffff;
+}
+.etc a i{
+    color: green;
+    font-size: 18px;
 }
 .etc a span{
     display: none;
@@ -173,7 +177,6 @@ body{
     height: 60px;
     line-height: 50px;
     width: 300px;
-    border: 1px solid #d3d3d3;
     box-shadow: 0 0 5px #e1e1e1;
     border-radius: 4px;
     margin-right: 5px;
@@ -183,14 +186,12 @@ body{
     width: 240px;
     height: 26px;
     border-radius: 4px;
-    border: 1px solid #e1e1e1;
     background-color: #ffffff;
     padding: 0 5px;
 }
 #share-box{
     width: 160px;
     height: 160px;
-    border: 1px solid #d3d3d3;
     box-shadow: 0 0 5px #e1e1e1;
     border-radius: 4px;
     margin-right: 5px;
@@ -205,7 +206,6 @@ body{
 #tell-box{
     width: 240px;
     height: 80px;
-    border: 1px solid #d3d3d3;
     box-shadow: 0 0 5px #e1e1e1;
     border-radius: 4px;
     margin-right: 5px;
@@ -224,6 +224,7 @@ body{
 /* center box */
 .contain{
     margin: 0 100px;
+    background-color: #f1f1f1;
 }
 .box{
     width: 100%;

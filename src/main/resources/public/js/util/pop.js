@@ -10,6 +10,8 @@
  * mode：2：包含“确认”、“取消”按钮
  * @param msg 信息
  * @param mode 模式
+ * @param yes
+ * @param no
  * @param fn mode=2时启用，确认的功能
  */
 function pop(msg,mode,yes,no,fn) {
@@ -23,7 +25,7 @@ function pop(msg,mode,yes,no,fn) {
     }
 }
 function pop1(msg,yes) {
-    if(null == yes || undefined == yes || '' == yes){
+    if(null == yes || '' === yes){
         yes = "确定";
     }
     pop_off();
@@ -46,10 +48,10 @@ function pop1(msg,yes) {
     $(".box").append(pop);
 }
 function pop2(msg,yes,no,fn) {
-    if(null == yes || undefined == yes || '' == yes){
+    if(null == yes || '' === yes){
         yes = "确定";
     }
-    if(null == no || undefined == no || '' == no){
+    if(null == no || '' === no){
         no = "取消";
     }
     pop_off();
@@ -95,7 +97,7 @@ function tips(msg,wait) {
                 '</div>'+
             '</div>';
     $(".box").append(tips);
-    if(wait == null || wait == undefined || wait <= 0)
+    if(wait == null || wait <= 0)
         wait = 1000;
     setTimeout(function () {
         pop_off();

@@ -1,0 +1,51 @@
+.ky{
+    width: 100%;
+    min-height: 473px;
+}
+.ky-title{
+    height: 100px;
+    padding-left: 120px;
+}
+.ky-title td{
+    padding-left: 22%;
+    font-size: 30px;
+    border-bottom: 1px solid #666666;
+}
+.ky-title .ky-logo{
+    color: #d6b60e;
+    padding-left: 15px;
+}
+.ky-title .ky-logo-pre{
+    color: #777777;
+    font-size: 25px;
+}
+.ky-content{
+    min-height: 373px;
+}
+.ky-list{
+    width: 30%;
+    vertical-align: top;
+}
+.ky-list ul{
+    text-align: right;
+    padding-right: 30px;
+    list-style: none;
+    margin: 20px auto;
+}
+.ky-list ul li{
+    height: 50px;
+}
+.ky-text{
+    width: 70%;
+    vertical-align: top;
+    padding: 30px 20px;
+    border-left: 1px solid #666666;
+    font-size: 18px;
+    color: #777777;
+}
+.ky-active{
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: goldenrod;
+}

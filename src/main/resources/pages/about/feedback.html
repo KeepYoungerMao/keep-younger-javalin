@@ -6,6 +6,7 @@
     <title>建议反馈</title>
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
     <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 </head>
 <style>
     .msg,.mxg{
@@ -126,7 +127,7 @@
         var advise = $("#advise").val();
         var name = $("#name").val();
         var email = $("#email").val();
-        if(null == title || '' == title){
+        if(null == title || '' === title){
             tips("请填写一下标题");
             return;
         }
@@ -134,7 +135,7 @@
             tips("标题不要超过20个字哦");
             return;
         }
-        if(null == advise || '' == advise){
+        if(null == advise || '' === advise){
             tips("请填写一下建议信息");
             return;
         }
@@ -142,7 +143,7 @@
             tips("写的建议不要超过200字");
             return;
         }
-        if(null == email || '' == email){
+        if(null == email || '' === email){
             tips("请留个邮箱吧");
             return;
         }
@@ -168,8 +169,8 @@
     }
     
     function pre(msg) {
-        if(undefined != msg && null != msg && '' != msg){
-            if(msg.code == 200){
+        if(undefined !== msg && null != msg && '' !== msg){
+            if(msg.code === 200){
                 $("#title").val('');
                 $("#advise").val('');
                 $("#name").val('');
