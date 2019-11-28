@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -84,29 +84,31 @@
 </style>
 <body>
 <div th:replace="model/head::top"></div>
-<div class="box">
-    <div class="logo">
-        <span>反馈到</span>
-        <img th:src="@{/img/keep_younger.png}" alt="">
-    </div>
-    <div class="msg">
-        <label for="title">您要说的方面:</label>
-        <input id="title" type="text" placeholder="标题">
-    </div>
-    <div class="mxg">
-        <label for="advise">您的建议:</label>
-        <textarea id="advise" maxlength="200"></textarea>
-    </div>
-    <div class="msg">
-        <label for="name">您的名字:</label>
-        <input id="name" type="text" placeholder="如果您愿意">
-    </div>
-    <div class="msg">
-        <label for="email">您的邮箱:</label>
-        <input id="email" type="email" placeholder="我们将会主动联系您">
-    </div>
-    <div class="btn">
-        <button onclick="feedback()">提交反馈</button>
+<div class="contain">
+    <div class="box">
+        <div class="logo">
+            <span>反馈到</span>
+            <img th:src="@{/img/keep_younger.png}" alt="">
+        </div>
+        <div class="msg">
+            <label for="title">您要说的方面:</label>
+            <input id="title" type="text" placeholder="标题">
+        </div>
+        <div class="mxg">
+            <label for="advise">您的建议:</label>
+            <textarea id="advise" maxlength="200"></textarea>
+        </div>
+        <div class="msg">
+            <label for="name">您的名字:</label>
+            <input id="name" type="text" placeholder="如果您愿意">
+        </div>
+        <div class="msg">
+            <label for="email">您的邮箱:</label>
+            <input id="email" type="email" placeholder="我们将会主动联系您">
+        </div>
+        <div class="btn">
+            <button onclick="feedback()">提交反馈</button>
+        </div>
     </div>
 </div>
 <div th:replace="model/foot::foot"></div>

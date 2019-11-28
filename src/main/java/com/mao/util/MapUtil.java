@@ -16,7 +16,7 @@ public class MapUtil {
             String key = null;
             for (Object aVar : var) {
                 if (isKey)
-                    if (null != aVar && aVar instanceof String) key = (String) aVar;
+                    if (aVar instanceof String) key = (String) aVar;
                     else return map;
                 else map.put(key, aVar);
                 isKey = !isKey;

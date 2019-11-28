@@ -1,7 +1,7 @@
 /* body */
 body{
     background-color: #d3d3d3;
-    margin: 0 100px;
+    margin: 0;
     min-width: 1000px;
     font-family: 幼圆,Arial,sans-serif;
 }
@@ -222,7 +222,11 @@ body{
 }
 
 /* center box */
+.contain{
+    margin: 0 100px;
+}
 .box{
+    width: 100%;
     min-height: 473px;
 }
 

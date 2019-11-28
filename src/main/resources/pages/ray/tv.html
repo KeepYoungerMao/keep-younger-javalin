@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -12,29 +12,31 @@
 
 <body>
 <div th:replace="/model/head::top"></div>
-<div class="box">
-    <div class="list">
-        <div class="list-select">
-            <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                <tr>
-                    <td width="50%" data-id="gn" class="active" onclick="transField(this)"><a>国内</a></td>
-                    <td width="50%" data-id="gw" onclick="transField(this)"><a>国外</a></td>
-                </tr>
-            </table>
+<div class="contain">
+    <div class="box">
+        <div class="list">
+            <div class="list-select">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td width="50%" data-id="gn" class="active" onclick="transField(this)"><a>国内</a></td>
+                        <td width="50%" data-id="gw" onclick="transField(this)"><a>国外</a></td>
+                    </tr>
+                </table>
+            </div>
+            <ul id="gn">
+                <!--<li data-url="http://ivi.bupt.edu.cn/hls/hunanhd.m3u8" onclick="trans(this)">
+                    <span class="list-name">湖南卫视</span><span class="tips">一般</span>
+                </li>-->
+            </ul>
+            <ul id="gw" style="display: none"></ul>
         </div>
-        <ul id="gn">
-            <!--<li data-url="http://ivi.bupt.edu.cn/hls/hunanhd.m3u8" onclick="trans(this)">
-                <span class="list-name">湖南卫视</span><span class="tips">一般</span>
-            </li>-->
-        </ul>
-        <ul id="gw" style="display: none"></ul>
-    </div>
-    <div class="video">
-        <section>
-            <video id="my_video" class="video-js vjs-default-skin vjs-big-play-centered" poster="">
-                <source src="http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8" type="application/x-mpegURL" id="target">
-            </video>
-        </section>
+        <div class="video">
+            <section>
+                <video id="my_video" class="video-js vjs-default-skin vjs-big-play-centered" poster="">
+                    <source src="http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8" type="application/x-mpegURL" id="target">
+                </video>
+            </section>
+        </div>
     </div>
 </div>
 <div th:replace="/model/foot::foot"></div>
@@ -56,7 +58,7 @@
                 '<span class="list-name">'+data[i].name+'</span>' +
                 '<span class="tips">'+data[i].kind+'</span>' +
                 '</li>';
-            if (data[i].type == 0)
+            if (data[i].type === 0)
                 gn += li;
             else gw += li;
         }
