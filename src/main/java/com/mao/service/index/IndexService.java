@@ -1,4 +1,4 @@
-package com.mao.index;
+package com.mao.service.index;
 
 import io.javalin.http.Context;
 

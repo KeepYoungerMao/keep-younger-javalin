@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mao.mapper.color.PicMapper">
+
+    <select id="getPicMainClass" resultType="com.mao.entity.color.PicMainClass">
+        SELECT * FROM tt_pic_main_class
+    </select>
+
+    <select id="getPicSubClass" resultType="com.mao.entity.color.PicSubClass">
+        SELECT * FROM tt_pic_sub_class
+    </select>
+
+    <select id="getPic" parameterType="com.mao.entity.color.PicParam" resultType="com.mao.entity.color.SimplePic">
+        SELECT pic_id AS `id`,pic_main_class AS `mid`,pic_sub_class AS `sid`,
+               pic_name AS `name`,pic_s_image AS `image` FROM tt_pic
+        WHERE pic_sub_class = #{id} LIMIT #{page},40
+    </select>
+
+</mapper>

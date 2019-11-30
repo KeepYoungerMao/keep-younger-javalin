@@ -1,6 +1,6 @@
 package com.mao.service.about;
 
-import com.mao.mapper.FeedbackMapper;
+import com.mao.mapper.about.FeedbackMapper;
 import com.mao.config.MybatisConfigure;
 import com.mao.entity.about.FeedBack;
 import com.mao.service.BaseService;
@@ -9,6 +9,7 @@ import io.javalin.http.Context;
 import org.apache.ibatis.session.SqlSession;
 
 /**
+ * 处理关于模块
  * @author mao by 14:44 2019/11/26
  */
 public class AboutService extends BaseService {

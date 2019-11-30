@@ -20,6 +20,7 @@
     <mappers>
         <mapper resource="mapper/ray/TvMapper.xml"/>
         <mapper resource="mapper/about/FeedbackMapper.xml"/>
+        <mapper resource="mapper/color/PicMapper.xml"/>
     </mappers>
     
 </configuration>

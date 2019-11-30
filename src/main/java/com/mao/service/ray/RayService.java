@@ -2,7 +2,7 @@ package com.mao.service.ray;
 
 import com.mao.config.MybatisConfigure;
 import com.mao.entity.ray.M3u8;
-import com.mao.mapper.TvMapper;
+import com.mao.mapper.ray.TvMapper;
 import io.javalin.http.Context;
 import org.apache.ibatis.session.SqlSession;
 

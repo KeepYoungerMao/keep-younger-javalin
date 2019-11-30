@@ -14,7 +14,7 @@
             </a>
             <div class="etc-show">
                 <div id="git-box">
-                    <input id="github" type="text" disabled="disabled" value="https://github.com/KeepYoungerMao/keep-younger-main">
+                    <input id="github" type="text" disabled="disabled" value="https://github.com/KeepYoungerMao/keep-younger-javalin.git">
                     <label for="github" onclick="copyGit()">复制</label>
                 </div>
             </div>
@@ -38,7 +38,7 @@
             <div class="etc-show">
                 <div id="tell-box">
                     <div>📞&nbsp;&nbsp;&nbsp;&nbsp;0573-99888888</div>
-                    <div>📫&nbsp;&nbsp;&nbsp;&nbsp;zongxing_mao@163.com</div>
+                    <div>📫&nbsp;&nbsp;&nbsp;&nbsp;1607293758@qq.com</div>
                 </div>
             </div>
         </div>
@@ -49,16 +49,28 @@
             </a>
         </div>
         <div id="scroll" class="etc">
-            <a href="javascript:void(0)">
+            <a href="javascript:toTop()">
                 <i class="fa fa-arrow-up"></i>
                 <span>顶部</span>
             </a>
         </div>
+        <script>
+            function copyGit() {
+                console.info("复制成功")
+            }
+            function toTop() {
+                var len = document.documentElement.scrollTop;
+                var t = setInterval(function () {
+                    console.log(len);
+                    window.scrollTo(0, len);
+                    len -= 30;
+                    if (len < 0) {
+                        clearInterval(t);
+                        window.scrollTo(0, 0);
+                    }
+                },10);
+            }
+        </script>
     </div>
 </body>
-<script>
-    function copyGit() {
-        console.info("复制成功")
-    }
-</script>
 </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <title>图片大全</title>
+        <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+        <link rel="stylesheet" th:href="@{/css/model.css}">
+        <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    </head>
+
+    <body>
+        <div th:replace="model/head::top"></div>
+        <div class="contain">
+            <div class="box">
+                <span>...正在制作</span>
+            </div>
+        </div>
+        <div th:replace="model/foot::foot"></div>
+        <div th:replace="model/etc::etc"></div>
+    </body>
+
+</html>

@@ -1,4 +1,4 @@
-package com.mao.mapper;
+package com.mao.mapper.ray;
 
 import com.mao.entity.ray.M3u8;
 import org.apache.ibatis.annotations.Mapper;

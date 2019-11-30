@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>图片大全</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+<style>
+    .contain{
+        background-color: #d3d3d3;
+    }
+    .pic-class{
+        padding: 0;
+    }
+    .pic-main-ul,.pic-sub-ul{
+        list-style: none;
+        background-color: #f1f1f1;
+        margin: 5px 0 0 0;
+        border-radius: 5px;
+        padding: 0 8px;
+    }
+    .pic-main-class,.pic-sub-class{
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        width: 70px;
+    }
+    .pmc,.psc{
+        border: 1px solid #f1f1f1;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    .pmc:hover,.psc:hover,.pic-active{
+        border: 1px solid green;
+        background-color: green;
+        color: #ffffff;
+    }
+
+    /* image */
+    .masonry {
+        -moz-column-count:5; /* Firefox */
+        -webkit-column-count:5; /* Safari 和 Chrome */
+        column-count:5;
+        -moz-column-gap: 2px;
+        -webkit-column-gap: 2px;
+        column-gap: 2px;
+        width: 90%;
+        margin:50px auto;
+    }
+    .item {
+        padding: 2px;
+        margin-bottom: 2px;
+        -moz-page-break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+        break-inside: avoid;
+    }
+    .item_content{
+        overflow: hidden;
+    }
+    .lazy{
+        height: 100%;
+        width: 100%;
+        transition: all 0.4s;
+    }
+    .lazy:hover{
+        transform: scale(1.3);
+    }
+    @media screen and (max-width: 800px) {
+        .masonry {
+            column-count: 5;
+        }
+    }
+    @media screen and (max-width: 500px) {
+        .masonry {
+            column-count: 2;
+        }
+    }
+</style>
+<body>
+<div th:replace="/model/head::top"></div>
+<div class="contain">
+    <div class="box">
+        <div class="pic-class">
+            <ul class="pic-main-ul">
+                <!--<li class="pic-main-class"><span class="pmc pic-active">风景图片</span></li>-->
+            </ul>
+            <ul class="pic-sub-ul">
+                <!--<li class="pic-sub-class"><span class="psc">山水图片</span></li>-->
+            </ul>
+            <div class="masonry"></div>
+        </div>
+    </div>
+</div>
+<div th:replace="/model/foot::foot"></div>
+<div th:replace="/model/etc::etc"></div>
+</body>
+<script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:inline="javascript">
+
+    var picClass;   //class data
+    var pics;       //pic data
+    var picParam;   //param data
+
+    $(function () {
+        picClass = [[${picClass}]];
+        pics = [[${pics}]];
+        picParam = [[${picParam}]];
+        picParam.page = picParam.page*40 + 1;
+        console.log(pics);
+        console.log(picParam);
+        loadClass(picClass);
+        picActive();
+        loadPic();
+    });
+
+    function loadClass(pc) {
+        var main = '',sub = '';
+        for (var i = 0,len = pc.length; i < len; i++){
+            main += '<li class="pic-main-class"><span class="pmc" data-id="'+pc[i].id+'">'+pc[i].name+'</span></li>';
+            if (pc[i].id === picParam.pid){
+                var ps = pc[i].child;
+                for (var j = 0,len2 = ps.length; j < len2; j++) {
+                    sub += '<li class="pic-sub-class"><span class="psc" data-pid="'+pc[i].id+'" data-id="'+ps[j].id+'">'+ps[j].name+'</span></li>';
+                }
+            }
+        }
+        $(".pic-class .pic-main-ul").append(main);
+        $(".pic-class .pic-sub-ul").append(sub);
+        classAction();
+        picAction2()
+    }
+
+    function classAction(){
+        $(".pmc").on("click",function () {
+            if (!$(this).hasClass("pic-active")) {
+                //移除别的active，自己增加active
+                $(this).parent().siblings().find(".pmc").removeClass("pic-active");
+                $(this).addClass("pic-active");
+                //移除子class，添加新的
+                $(".pic-sub-ul").empty();
+                var id = $(this).data("id");
+                for (var i = 0, len = picClass.length; i < len; i++){
+                    if (picClass[i].id === id){
+                        var pms = picClass[i].child;
+                        var sub2 = '';
+                        for (var j = 0, len2 = pms.length; j < len2; j++){
+                            sub2 += '<li class="pic-sub-class"><span class="psc" data-pid="'+picClass[i].id+'" data-id="'+pms[j].id+'">'+pms[j].name+'</span></li>';
+                        }
+                        $(".pic-sub-ul").append(sub2);
+                        picAction2();
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    function picAction2() {
+        $(".psc").on("click",function () {
+            if (!$(this).hasClass("pic-active")) {
+                var pid = $(this).data("pid");
+                var id = $(this).data("id");
+                window.location.href = '/color/pic/'+pid+'/'+id+'/'+1;
+            }
+        });
+    }
+
+    function picActive() {
+        $(".pmc[data-id='"+picParam.pid+"']").addClass("pic-active");
+        $(".psc[data-id='"+picParam.id+"']").addClass("pic-active");
+    }
+
+    function loadPic() {
+        for (var i = 0,len = pics.length; i < len; i++){
+            var image = '/pic/'+pics[i].mid+'/'+pics[i].sid+'/'+pics[i].image;
+            var img = '<div class="item"><div class="item_content content-lar">' +
+                '<a title="'+pics[i].name+'" href="/color/picSrc/'+pics[i].id+'">' +
+                '<img class="lazy" src="'+image+'" alt="'+pics[i].name+'" /></a>' +
+                '</div></div>';
+            $(".masonry").append(img);
+        }
+    }
+</script>
+</html>

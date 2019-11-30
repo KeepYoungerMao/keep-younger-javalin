@@ -1,7 +1,8 @@
 package com.mao;
 
 import com.mao.service.about.AboutService;
-import com.mao.index.IndexService;
+import com.mao.service.index.IndexService;
+import com.mao.service.color.ColorService;
 import com.mao.service.ray.RayService;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
@@ -35,7 +36,7 @@ public class Main {
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
-            config.addStaticFiles("D:\\develop\\image", Location.EXTERNAL);
+            config.addStaticFiles("F:\\self\\image", Location.EXTERNAL);
         }).start(8080);
 
         app.routes(() -> {
@@ -47,6 +48,11 @@ public class Main {
             path("about", () -> {
                 get(":page", AboutService::about);
                 post("feedback", AboutService::feedback);
+            });
+            path("color", () -> {
+                get("pic", ColorService::pic);
+                get("pic/:pid/:id/:page", ColorService::pic2);
+                get("picSrc/:id",ColorService::picSrc);
             });
         });
 
