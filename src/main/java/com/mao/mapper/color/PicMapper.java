@@ -1,10 +1,8 @@
 package com.mao.mapper.color;
 
-import com.mao.entity.color.PicMainClass;
-import com.mao.entity.color.PicParam;
-import com.mao.entity.color.PicSubClass;
-import com.mao.entity.color.SimplePic;
+import com.mao.entity.color.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +17,9 @@ public interface PicMapper {
     List<PicSubClass> getPicSubClass();
 
     List<SimplePic> getPic(PicParam picParam);
+
+    int getPicCount(@Param("id") int id);
+
+    Pic getPicSrc(@Param("id") int id);
 
 }

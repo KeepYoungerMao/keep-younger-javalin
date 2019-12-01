@@ -52,7 +52,7 @@ public class Main {
             path("color", () -> {
                 get("pic", ColorService::pic);
                 get("pic/:pid/:id/:page", ColorService::pic2);
-                get("picSrc/:id",ColorService::picSrc);
+                get("pic/src/:id",ColorService::picSrc);
             });
         });
 

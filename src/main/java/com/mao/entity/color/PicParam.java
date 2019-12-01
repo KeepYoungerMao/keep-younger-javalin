@@ -12,7 +12,8 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class PicParam {
-    private int pid;
-    private int id;
-    private int page;
+    private int pid;        //main class id
+    private int id;         //sub class id
+    private int page;       //current page
+    private int count;      //total count
 }

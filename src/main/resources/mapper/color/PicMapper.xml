@@ -17,4 +17,18 @@
         WHERE pic_sub_class = #{id} LIMIT #{page},40
     </select>
 
+    <select id="getPicCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(`pic_id`) from tt_pic where pic_sub_class = #{id}
+    </select>
+
+    <select id="getPicSrc" parameterType="java.lang.Integer" resultType="com.mao.entity.color.Pic">
+        SELECT a.`pic_id` AS `id`,a.`pic_main_class` AS `mid`,b.`pcm_name` AS `m_name`,
+               a.`pic_sub_class` AS `sid`,c.`pcs_name` AS `s_name`,a.`pic_name` AS `name`,
+               a.`pic_b_image` AS `image`,a.`pic_key` AS `key`
+        FROM tt_pic AS a
+        LEFT JOIN tt_pic_main_class AS b ON a.`pic_main_class` = b.`pcm_id`
+        LEFT JOIN tt_pic_sub_class AS c ON a.`pic_sub_class` = c.`pcs_id`
+        WHERE a.`pic_id` = #{id}
+    </select>
+
 </mapper>

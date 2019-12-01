@@ -1,0 +1,101 @@
+.contain{
+    background-color: #d3d3d3;
+}
+.pic-class{
+    padding: 0;
+}
+.pic-main-ul,.pic-sub-ul{
+    list-style: none;
+    background-color: #f1f1f1;
+    margin: 5px 0 0 0;
+    border-radius: 5px;
+    padding: 0 8px;
+}
+.pic-main-class,.pic-sub-class{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 70px;
+}
+.pmc,.psc{
+    border: 1px solid #f1f1f1;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.pmc:hover,.psc:hover,.pic-active{
+    border: 1px solid green;
+    background-color: green;
+    color: #ffffff;
+}
+
+/* image */
+.masonry {
+    -moz-column-count:5; /* Firefox */
+    -webkit-column-count:5; /* Safari 和 Chrome */
+    column-count:5;
+    -moz-column-gap: 2px;
+    -webkit-column-gap: 2px;
+    column-gap: 2px;
+    width: 90%;
+    margin:50px auto;
+}
+.item {
+    padding: 2px;
+    margin-bottom: 2px;
+    -moz-page-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    break-inside: avoid;
+}
+.item_content{
+    overflow: hidden;
+}
+.lazy{
+    height: 100%;
+    width: 100%;
+    transition: all 0.4s;
+}
+.lazy:hover{
+    transform: scale(1.3);
+}
+@media screen and (max-width: 800px) {
+    .masonry {
+        column-count: 5;
+    }
+}
+@media screen and (max-width: 500px) {
+    .masonry {
+        column-count: 2;
+    }
+}
+
+/* page */
+#page-box{
+    margin: 20px auto;
+    text-align: center;
+}
+#page-box a, #page-box span{
+    display: inline-block;
+    height: 34px;
+    width: 34px;
+    text-align: center;
+    line-height: 34px;
+    font-weight: bold;
+    margin: 0 4px;
+}
+#page-box a{
+    background-color: #f1f1f1;
+    text-decoration: none;
+    color: #444444;
+}
+#page-box a:hover{
+    background-color: #e1e1e1;
+}
+#page-box a#next-page{
+    width: 68px;
+}
+#page-box span{
+    background-color: green;
+    color: #ffffff;
+}

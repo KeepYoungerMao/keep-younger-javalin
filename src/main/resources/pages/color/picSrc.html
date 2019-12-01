@@ -8,16 +8,130 @@
         <link rel="stylesheet" th:href="@{/css/model.css}">
         <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
     </head>
-
+    <style>
+        .contain{
+            background-color: #d3d3d3;
+        }
+        .pic-src-content{
+            width: 30%;
+            vertical-align: top;
+            margin-top: 20px;
+        }
+        .pic-src-content h3{
+            padding-left: 15px;
+        }
+        .pic-src-content .pic-key{
+            margin-top: 30px;
+            line-height: 36px;
+        }
+        .pic-src-content .pic-key b{
+            color: #888888;
+            padding: 2px 8px;
+        }
+        .pic-src-content .pic-key span{
+            margin: 0 5px;
+            display: inline-block;
+            line-height: 36px;
+        }
+        .pic-src-content .pic-key span a{
+            padding: 4px 8px;
+            border-radius: 5px;
+            background-color: green;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .pic-src-content .pic-key span a:hover{
+            background-color: #005900;
+        }
+        .pic-img-content{
+            width: 70%;
+        }
+        .pic-sign{
+            height: 32px;
+            line-height: 32px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+        .pic-sign .pic-sign-item{
+            color: #666666;
+            margin: 0 2px;
+            font-size: 14px;
+        }
+        .pic-sign .pic-sign-item a{
+            color: #666666;
+            text-decoration: none;
+        }
+        .pic-sign .pic-sign-item a:hover{
+            color: #333333;
+        }
+        .pic-sign .pic-sign-pre{
+            padding-left: 20px;
+        }
+        .pic-sign .pic-sign-c{
+            color: green;
+            font-size: 15px;
+        }
+        .pic-img-content{
+            text-align: center;
+        }
+        .pic-img-content img{
+            width: 90%;
+        }
+        .pic-table{
+            width: 100%;
+            margin-top: 30px;
+        }
+        .pic-tips{
+            text-align: center;
+            margin: 20px 0;
+            color: #888888;
+            font-size: 14px;
+        }
+    </style>
     <body>
         <div th:replace="model/head::top"></div>
         <div class="contain">
             <div class="box">
-                <span>...正在制作</span>
+                <div class="pic-sign">
+                    <span class="pic-sign-item pic-sign-pre">
+                        <a th:href="@{/color/pic}">图片大全</a></span>
+                    <span class="pic-sign-c">/</span>
+                    <span class="pic-sign-item" id="pic-main-class"></span>
+                    <span class="pic-sign-c">/</span>
+                    <span class="pic-sign-item" id="pic-sub-class"></span>
+                </div>
+                <table class="pic-table" border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td class="pic-src-content">
+                            <h3></h3>
+                            <div class="pic-key"><b>标签：</b></div>
+                        </td>
+                        <td class="pic-img-content"></td>
+                    </tr>
+                </table>
+                <div class="pic-tips">
+                    <span>本图片收集于网络，图片仅作测试使用，不作商业用途。如有侵犯，本站将立即删除</span>
+                </div>
             </div>
         </div>
         <div th:replace="model/foot::foot"></div>
         <div th:replace="model/etc::etc"></div>
     </body>
-
+    <script th:src="@{/js/jquery-2.0.3.js}"></script>
+    <script th:inline="javascript">
+        var pic = [[${pic}]];
+        console.log(pic);
+        $(function () {
+            $("#pic-main-class").html('<a href="/color/pic/'+pic.mid+'/'+pic.sid+'/1'+'">'+pic.m_name+'</a>');
+            $("#pic-sub-class").html('<a href="/color/pic/'+pic.mid+'/'+pic.sid+'/1'+'">'+pic.s_name+'</a>');
+            $(".pic-img-content").append('<img src="/pic_big/'+pic.mid+'/'+pic.sid+'/'+pic.image+'" alt="'+pic.name+'">');
+            $(".pic-src-content h3").html(pic.name);
+            var keys = pic.key.split(",");
+            for (var i = 0; i < keys.length; i++){
+                $(".pic-src-content .pic-key").append('<span><a>'+keys[i]+'</a></span>');
+            }
+        });
+    </script>
 </html>

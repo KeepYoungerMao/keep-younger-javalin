@@ -19,7 +19,7 @@ import static com.mao.util.MapUtil.addMap;
 public class ColorService {
 
     public static void pic(Context ctx){
-        pics(ctx,new PicParam(1,1,0));
+        pics(ctx,new PicParam(1,1,0,0));
     }
 
     public static void pic2(Context ctx){
@@ -34,7 +34,7 @@ public class ColorService {
             page = Integer.parseInt(ctx.pathParam("page"));
             page = page <=1 ? 0 : (page -1)*40;
         } catch (NumberFormatException ignored) {}
-        return new PicParam(pid,id,page);
+        return new PicParam(pid,id,page,0);
     }
 
     private static void pics(Context ctx, PicParam picParam){
@@ -42,6 +42,8 @@ public class ColorService {
         PicMapper mapper = session.getMapper(PicMapper.class);
         List<PicMainClass> mainClass = mapper.getPicMainClass();
         List<PicSubClass> subClass = mapper.getPicSubClass();
+        int count = mapper.getPicCount(picParam.getId());
+        picParam.setCount(count);
         List<PicClass> picClass = getPicClass(mainClass, subClass);
         List<SimplePic> pics = mapper.getPic(picParam);
         ctx.render("color/pic.html",addMap("picClass",picClass,"pics",pics,"picParam",picParam));
@@ -65,7 +67,14 @@ public class ColorService {
     }
 
     public static void picSrc(Context ctx){
-        ctx.render("color/picSrc.html");
+        SqlSession session = MybatisConfigure.getSession();
+        PicMapper mapper = session.getMapper(PicMapper.class);
+        int id = 0;
+        try {
+            id = Integer.parseInt(ctx.pathParam("id"));
+        } catch (NumberFormatException ignored) {}
+        Pic pic = mapper.getPicSrc(id);
+        ctx.render("color/picSrc.html",addMap("pic",pic));
     }
 
 }
