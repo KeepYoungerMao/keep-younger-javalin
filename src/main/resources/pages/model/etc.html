@@ -15,7 +15,7 @@
             <div class="etc-show">
                 <div id="git-box">
                     <input id="github" type="text" disabled="disabled" value="https://github.com/KeepYoungerMao/keep-younger-javalin.git">
-                    <label for="github" onclick="copyGit()">复制</label>
+                    <label for="github" onclick="copyGit('https://github.com/KeepYoungerMao/keep-younger-javalin.git')">复制</label>
                 </div>
             </div>
         </div>
@@ -55,8 +55,15 @@
             </a>
         </div>
         <script>
-            function copyGit() {
-                console.info("复制成功")
+            function copyGit(str) {
+                var oInput = document.createElement('input');
+                oInput.value = str;
+                document.body.appendChild(oInput);
+                oInput.select();
+                document.execCommand("Copy");
+                oInput.style.display = 'none';
+                document.body.removeChild(oInput);
+                window.alert('复制成功');
             }
             function toTop() {
                 var len = document.documentElement.scrollTop;

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>图片大全</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+<style>
+    .contain{
+        background-color: #d3d3d3;
+    }
+    .bjx-class{
+        padding: 0;
+    }
+    .bjx-class ul{
+        list-style: none;
+        background-color: #f1f1f1;
+        margin: 5px 0 0 0;
+        border-radius: 5px;
+        padding: 5px 8px;
+    }
+    .bjx-class ul li{
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        width: 36px;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .bjx-class ul li a{
+        color: #333333;
+        text-decoration: none;
+        display: block;
+    }
+    .bjx-class ul li:hover, .bjx-class-active{
+        background-color: green;
+    }
+    .bjx-class ul li:hover a{
+        color: #ffffff;
+    }
+    .bjx-box{
+        margin: 30px 0;
+        padding: 0 15px;
+    }
+    .bjx-box ul{
+        list-style: none;
+        background-color: #d3d3d3;
+        margin: 5px 0 0 0;
+        border-radius: 5px;
+        padding: 5px 8px;
+    }
+    .bjx-box ul li{
+        border: 1px solid #c3c3c3;
+        border-radius: 5px;
+        display: inline-block;
+        background-color: #f1f1f1;
+        margin: 8px 5px;
+        padding: 4px;
+    }
+    .bjx-box ul li span{
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        text-align: center;
+        line-height: 36px;
+        font-size: 24px;
+        font-weight: bold;
+        background: url("/img/bjx_bg.jpg") no-repeat;
+        background-size: 100% 100%;
+        color: #880202;
+    }
+</style>
+<body>
+<div th:replace="model/head::top"></div>
+<div class="contain">
+    <div class="box">
+        <div class="bjx-class">
+            <ul></ul>
+        </div>
+        <div class="bjx-box">
+            <ul>
+                <li><span>白</span></li>
+                <li><span>司</span><span>马</span></li>
+                <li><span>白</span></li>
+                <li><span>司</span><span>马</span><span>司</span><span>马</span></li>
+                <li><span>白</span></li>
+                <li><span>司</span><span>马</span></li>
+                <li><span>白</span></li>
+                <li><span>白</span></li>
+                <li><span>司</span><span>马</span></li>
+                <li><span>白</span></li>
+                <li><span>司</span><span>马</span><span>司</span><span>马</span></li>
+                <li><span>白</span></li>
+                <li><span>司</span><span>马</span></li>
+                <li><span>白</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:replace="model/foot::foot"></div>
+<div th:replace="model/etc::etc"></div>
+</body>
+<script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:inline="javascript">
+    var py = ['A','B','C','D','E','F','G','H','J','K','L','M','N','O','P','Q','R','S','T','W','X','Y','Z'];
+    $(function () {
+        loadClass();
+    });
+
+    function loadClass() {
+        for (var i = 0; i < py.length; i++){
+            $(".bjx-class ul").append('<li><a href="">'+py[i]+'</a></li>');
+        }
+    }
+</script>
+</html>
