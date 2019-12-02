@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>佛经大全</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+<style>
+    .contain{
+        background-color: #d3d3d3;
+    }
+    .bud-box{
+        margin: 20px 0;
+        padding: 0 15px;
+    }
+    .bud-sign{
+        height: 32px;
+        line-height: 32px;
+        color: #666666;
+        margin: 15px 0;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    .bud-sign span{
+        margin: 0 1px;
+    }
+    .bud-sign span a{
+        color: #666666;
+        text-decoration: none;
+    }
+    .bud-sign span a:hover{
+        color: #333333;
+    }
+    .bud-sign .bud-sign-pre{
+        padding-left: 15px;
+    }
+    .bud-intro,.bud-src{
+        width: 100%;
+        min-height: 240px;
+        margin: 30px 0;
+        padding: 0 15px;
+    }
+    .bud-intro img{
+        float: left;
+        width: 140px;
+        height: 240px;
+        margin-right: 100px;
+    }
+    .bud-intro h2{
+        margin-top: 20px;
+        padding-top: 40px;
+    }
+    .bud-intro p{
+        margin-top: 60px;
+        text-indent: 32px;
+        line-height: 180%;
+    }
+    .bud-src p{
+        line-height: 150%;
+        text-indent: 32px;
+    }
+    .pic-tips{
+        text-align: center;
+        margin: 20px 0;
+        color: #888888;
+        font-size: 14px;
+    }
+</style>
+<body>
+<div th:replace="/model/head::top"></div>
+<div class="contain">
+    <div class="box">
+        <div class="bud-box">
+            <div class="bud-sign">
+                <span class="bud-sign-pre">佛经大全</span>
+                <span>/</span>
+                <span id="bud-type"></span>
+                <span>/</span>
+                <span id="bud-name"></span>
+            </div>
+            <div class="bud-intro">
+                <img src="" alt="佛经图片">
+                <h2></h2>
+                <p></p>
+            </div>
+            <div class="bud-sign">
+                <span class="bud-sign-pre">原文</span>
+                <span>/</span>
+                <span id="bud-title"></span>
+            </div>
+            <div class="bud-src"></div>
+            <div class="pic-tips">
+                <span>数据收集于网络，数据及图片仅作测试使用，不作商业用途。如有侵犯，本站将立即删除</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="/model/foot::foot"></div>
+<div th:replace="/model/etc::etc"></div>
+</body>
+<script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:inline="javascript">
+    var chapter = [[${chapter}]];
+    $(function () {
+        $("#bud-type").html('<a href="/classical/buddhist">'+chapter.type+'</a>');
+        $("#bud-name").html('<a href="/classical/buddhist/'+chapter.sid+'">'+chapter.name+'</a>');
+        $(".bud-intro h2").html(chapter.name);
+        $(".bud-intro img").attr("src","/buddhist/"+chapter.image);
+        $("#bud-title").html(chapter.title);
+        $(".bud-intro p").html(chapter.intro);
+        $(".bud-src").html(chapter.src);
+    });
+</script>
+</html>

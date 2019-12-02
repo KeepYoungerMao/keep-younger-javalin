@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>佛经大全</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+<style>
+    .contain{
+        background-color: #d3d3d3;
+    }
+    .bud-box{
+        margin: 20px 0;
+        padding: 0 15px;
+    }
+    .bud-sign{
+        height: 32px;
+        line-height: 32px;
+        color: #666666;
+        margin: 15px 0;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+    }
+    .bud-sign span{
+        padding-left: 15px;
+    }
+    .bud-list{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .bud-list li{
+        list-style: none;
+        display: inline-block;
+        width: 20%;
+        margin-top: 20px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    .bud-list li div{
+        height: 32px;
+        line-height: 32px;
+        width: 100%;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .bud-list li img{
+        width: 92%;
+    }
+</style>
+<body>
+<div th:replace="/model/head::top"></div>
+<div class="contain">
+    <div class="box">
+        <div class="bud-box">
+            <div class="bud-sign"><span>净土五经</span></div>
+            <ul class="bud-list" id="bud1"></ul>
+            <div class="bud-sign"><span>禅宗七经</span></div>
+            <ul class="bud-list" id="bud2"></ul>
+            <div class="bud-sign"><span>经典佛经</span></div>
+            <ul class="bud-list" id="bud3"></ul>
+        </div>
+    </div>
+</div>
+<div th:replace="/model/foot::foot"></div>
+<div th:replace="/model/etc::etc"></div>
+</body>
+<script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:inline="javascript">
+    var buddhist = [[${buddhist}]];
+    $(function () {
+        loadBuddhist();
+    });
+    function loadBuddhist() {
+        var html1 = '',html2 = '',html3 = '';
+        for (var i = 0, len = buddhist.length; i < len; i++){
+            var n = buddhist[i].name;
+            switch (buddhist[i].type){
+                case '净土五经':
+                    html1 += '<a title="'+n+'" href="/classical/buddhist/'+buddhist[i].id+'"><li>' +
+                        '<img src="/buddhist/'+buddhist[i].image+'" alt="'+n+'"><div><span>'
+                        +n+'</span></div></li></a>';
+                    break;
+                case '禅宗七经':
+                    html2 += '<a title="'+n+'" href="/classical/buddhist/'+buddhist[i].id+'"><li>' +
+                        '<img src="/buddhist/'+buddhist[i].image+'" alt="'+n+'"><div><span>'
+                        +n+'</span></div></li></a>';
+                    break;
+                case '经典佛经':
+                    html3 += '<a title="'+n+'" href="/classical/buddhist/'+buddhist[i].id+'"><li>' +
+                        '<img src="/buddhist/'+buddhist[i].image+'" alt="'+n+'"><div><span>'
+                        +n+'</span></div></li></a>';
+                    break;
+            }
+        }
+        $("#bud1").append(html1);
+        $("#bud2").append(html2);
+        $("#bud3").append(html3);
+    }
+</script>
+</html>

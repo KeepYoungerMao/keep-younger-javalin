@@ -1,8 +1,9 @@
 package com.mao;
 
 import com.mao.service.about.AboutService;
-import com.mao.service.index.IndexService;
+import com.mao.service.classical.BuddhistService;
 import com.mao.service.color.ColorService;
+import com.mao.service.index.IndexService;
 import com.mao.service.ray.RayService;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
@@ -53,6 +54,11 @@ public class Main {
                 get("pic", ColorService::pic);
                 get("pic/:pid/:id/:page", ColorService::pic2);
                 get("pic/src/:id",ColorService::picSrc);
+            });
+            path("classical", () -> {
+                get("buddhist", BuddhistService::buddhist);
+                get("buddhist/:id", BuddhistService::buddhistChapter);
+                get("buddhist/chapter/:id", BuddhistService::chapter);
             });
         });
 

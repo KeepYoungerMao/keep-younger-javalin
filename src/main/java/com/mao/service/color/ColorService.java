@@ -46,6 +46,7 @@ public class ColorService {
         picParam.setCount(count);
         List<PicClass> picClass = getPicClass(mainClass, subClass);
         List<SimplePic> pics = mapper.getPic(picParam);
+        session.close();
         ctx.render("color/pic.html",addMap("picClass",picClass,"pics",pics,"picParam",picParam));
     }
 
@@ -74,6 +75,7 @@ public class ColorService {
             id = Integer.parseInt(ctx.pathParam("id"));
         } catch (NumberFormatException ignored) {}
         Pic pic = mapper.getPicSrc(id);
+        session.close();
         ctx.render("color/picSrc.html",addMap("pic",pic));
     }
 

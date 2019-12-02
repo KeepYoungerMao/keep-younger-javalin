@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mao.mapper.classical.BuddhistMapper">
+
+    <select id="getBuddhist" resultType="com.mao.entity.classical.buddhist.SimpleBuddhist">
+        SELECT `bs_id` AS `id`,`bs_name` AS `name`,`bs_image` AS `image`,`bs_type` AS `type`
+        FROM tt_buddhist_sutra_class
+    </select>
+
+    <select id="getBuddhistSrc" parameterType="java.lang.Integer"
+            resultType="com.mao.entity.classical.buddhist.Buddhist">
+        SELECT `bs_id` AS `id`,`bs_name` AS `name`,`bs_image` AS `image`,
+        `bs_intro` AS `intro`,`bs_type` AS `type`
+        FROM tt_buddhist_sutra_class WHERE `bs_id` = #{id}
+    </select>
+
+    <select id="getBuddhistChapter" parameterType="java.lang.Integer"
+            resultType="com.mao.entity.classical.buddhist.BuddhistChapter">
+        SELECT `bs_id` AS id,`bs_s_id` AS sid,`bs_title` AS `title`
+        FROM tt_buddhist_sutra WHERE `bs_s_id` = #{id}
+    </select>
+
+    <select id="getBuddhistChapterSrc" parameterType="java.lang.Integer"
+            resultType="com.mao.entity.classical.buddhist.BuddhistChapterSrc">
+        SELECT a.bs_id AS `id`,a.bs_s_id AS `sid`,b.bs_name AS `name`,b.bs_intro AS `intro`,
+        b.bs_image AS `image`,b.bs_type AS `type`,a.bs_title AS `title`,a.bs_src AS `src`
+        FROM tt_buddhist_sutra AS a
+        LEFT JOIN tt_buddhist_sutra_class AS b ON a.bs_s_id = b.bs_id
+        WHERE a.bs_id = #{id}
+    </select>
+
+</mapper>

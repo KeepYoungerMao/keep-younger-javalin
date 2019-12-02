@@ -29,6 +29,12 @@
     background-color: green;
     color: #ffffff;
 }
+.pic-tips{
+    text-align: center;
+    margin: 20px 0;
+    color: #888888;
+    font-size: 14px;
+}
 
 /* image */
 .masonry {
