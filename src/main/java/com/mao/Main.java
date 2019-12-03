@@ -1,6 +1,6 @@
 package com.mao;
 
-import com.mao.mapper.classical.BjxService;
+import com.mao.service.classical.BjxService;
 import com.mao.service.about.AboutService;
 import com.mao.service.classical.BuddhistService;
 import com.mao.service.color.ColorService;
@@ -61,6 +61,9 @@ public class Main {
                 get("buddhist/:id", BuddhistService::buddhistChapter);
                 get("buddhist/chapter/:id", BuddhistService::chapter);
                 get("bjx", BjxService::bjx);
+                get("bjx/:py", BjxService::bjx2);
+                get("bjx/:py/:name", BjxService::bjx3);
+                get("bjxSrc/:id", BjxService::bjxSrc);
             });
         });
 

@@ -22,6 +22,7 @@
         <mapper resource="mapper/about/FeedbackMapper.xml"/>
         <mapper resource="mapper/color/PicMapper.xml"/>
         <mapper resource="mapper/classical/BuddhistMapper.xml"/>
+        <mapper resource="mapper/classical/BjxMapper.xml"/>
     </mappers>
     
 </configuration>

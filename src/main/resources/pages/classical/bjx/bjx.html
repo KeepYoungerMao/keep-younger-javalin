@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>图片大全</title>
+    <title>百家姓大全</title>
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
     <link rel="stylesheet" th:href="@{/css/model.css}">
     <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
@@ -29,6 +29,7 @@
         width: 36px;
         text-align: center;
         border-radius: 5px;
+        margin: 0 4px;
     }
     .bjx-class ul li a{
         color: #333333;
@@ -37,6 +38,9 @@
     }
     .bjx-class ul li:hover, .bjx-class-active{
         background-color: green;
+    }
+    .bjx-class-active a{
+        color: #ffffff !important;
     }
     .bjx-class ul li:hover a{
         color: #ffffff;
@@ -60,7 +64,15 @@
         margin: 8px 5px;
         padding: 4px;
     }
-    .bjx-box ul li span{
+    .bjx-box ul li:hover{
+        box-shadow: 0 0 5px #999999;
+    }
+    .bjx-box ul li a{
+        display: inline-block;
+        text-decoration: none;
+        color: #880202;
+    }
+    .bjx-box ul li a span{
         display: inline-block;
         width: 36px;
         height: 36px;
@@ -68,9 +80,36 @@
         line-height: 36px;
         font-size: 24px;
         font-weight: bold;
-        background: url("/img/bjx_bg.jpg") no-repeat;
-        background-size: 100% 100%;
+        /*background: url("/img/bjx_bg.jpg") no-repeat;*/
+        /*background-size: 100% 100%;*/
         color: #880202;
+    }
+    .bjx-search{
+        height: 40px;
+        line-height: 40px;
+        padding-left: 30px;
+        position: relative;
+        margin: 30px 0;
+    }
+    .bjx-search input{
+        border: 1px solid #c3c3c3;
+        border-radius: 15px;
+        height: 30px;
+        padding: 0 30px 0 10px;
+        width: 160px;
+        outline: none;
+    }
+    .bjx-search input:hover,.bjx-search input:active,.bjx-search input:focus{
+        border: 1px solid green;
+    }
+    .bjx-search label{
+        position: absolute;
+        top: 0;
+        left: 200px;
+        color: green;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1;
     }
 </style>
 <body>
@@ -80,22 +119,12 @@
         <div class="bjx-class">
             <ul></ul>
         </div>
+        <div class="bjx-search">
+            <input id="bjx-search" type="text" placeholder="search"><label for="bjx-search"><i class="fa fa-search" onclick="search()"></i></label>
+        </div>
         <div class="bjx-box">
             <ul>
-                <li><span>白</span></li>
-                <li><span>司</span><span>马</span></li>
-                <li><span>白</span></li>
-                <li><span>司</span><span>马</span><span>司</span><span>马</span></li>
-                <li><span>白</span></li>
-                <li><span>司</span><span>马</span></li>
-                <li><span>白</span></li>
-                <li><span>白</span></li>
-                <li><span>司</span><span>马</span></li>
-                <li><span>白</span></li>
-                <li><span>司</span><span>马</span><span>司</span><span>马</span></li>
-                <li><span>白</span></li>
-                <li><span>司</span><span>马</span></li>
-                <li><span>白</span></li>
+                <!--<li><a href=""><span>白</span></a></li>-->
             </ul>
         </div>
     </div>
@@ -106,14 +135,64 @@
 <script th:src="@{/js/jquery-2.0.3.js}"></script>
 <script th:inline="javascript">
     var py = ['A','B','C','D','E','F','G','H','J','K','L','M','N','O','P','Q','R','S','T','W','X','Y','Z'];
+    var bjx = [[${bjx}]];
+    var bjxParam = [[${bjxParam}]];
     $(function () {
         loadClass();
+        loadData();
     });
 
     function loadClass() {
+        var ul = $(".bjx-class ul");
         for (var i = 0; i < py.length; i++){
-            $(".bjx-class ul").append('<li><a href="">'+py[i]+'</a></li>');
+            $(ul).append('<li><a href="/classical/bjx/'+py[i]+'">'+py[i]+'</a></li>');
         }
     }
+
+    function loadData() {
+        for (var i = 0, len = bjx.length; i < len; i++){
+            $(".bjx-box ul").append('<li><a href="/classical/bjxSrc/'+bjx[i].id+'">'+getBjxSpan(bjx[i].name)+'</a></li>');
+        }
+        $(".bjx-box ul li a span").css({'background':'url("/img/bjx_bg.jpg") no-repeat','background-size':'100% 100%'});
+        var pys = $(".bjx-class ul li a");
+        for (var j = 0; j < pys.length; j++){
+            if ($(pys[j]).text() === bjxParam.py){
+                $(pys[j]).parent().addClass("bjx-class-active");
+            }
+        }
+        if (null != bjxParam.name){
+            $("#bjx-search").val(bjxParam.name).focus();
+        }
+    }
+
+    function getBjxSpan(str) {
+        var array = str.split("");
+        var span = '';
+        for (var i = 0; i < array.length; i++){
+            if (array[i] !== ' ')
+                span += '<span>'+array[i]+'</span>';
+        }
+        return span;
+    }
+    
+    function search() {
+        var name = $("#bjx-search").val();
+        var py = $(".bjx-class ul li.bjx-class-active a").text();
+        if (name){
+            window.location.href = "/classical/bjx/"+py+"/"+name;
+        } else {
+            window.location.href = "/classical/bjx/"+py;
+        }
+    }
+
+    $("#bjx-search").bind("keydown",function(e){
+        // 兼容FF和IE和Opera
+        var theEvent = e || window.event;
+        var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if (code === 13) {
+            //回车执行查询
+            $(".bjx-search label i").click();
+        }
+    });
 </script>
 </html>

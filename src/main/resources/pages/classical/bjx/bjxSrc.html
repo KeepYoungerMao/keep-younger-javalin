@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>百家姓大全</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+<style>
+    .contain{
+        background-color: #d3d3d3;
+    }
+    .bud-sign{
+        height: 32px;
+        line-height: 32px;
+        color: #666666;
+        margin: 15px 0;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    .bud-sign span{
+        margin: 0 1px;
+    }
+    .bud-sign span a{
+        color: #666666;
+        text-decoration: none;
+    }
+    .bud-sign span a:hover{
+        color: #333333;
+    }
+    .bud-sign .bud-sign-pre{
+        padding-left: 15px;
+    }
+    .bjx-name{
+        padding-left: 15px;
+        width: 40%;
+    }
+    .bjx-img{
+        width: 60%;
+        padding: 30px 0;
+    }
+    .bjx-img div{
+        display: inline-block;
+    }
+    .bjx-img div span{
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        font-weight: bold;
+        color: #880202;
+        font-size: 66px;
+    }
+    #bjx-src{
+        padding: 10px 20px;
+        border-top: 1px solid #999999;
+    }
+    .box table{
+        width: 90%;
+    }
+</style>
+<body>
+<div th:replace="model/head::top"></div>
+<div class="contain">
+    <div class="box">
+        <div class="bud-sign">
+            <span class="bud-sign-pre"><a th:href="@{/classical/bjx}">百家姓</a></span>
+            <span>/</span>
+            <span id="bud-bjx-name"></span>
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="bjx-name"><p>关于姓氏 <b id="bjx-name">白</b> 的介绍</p></td>
+                <td class="bjx-img"><div id="bjx-img"><span>白</span></div></td>
+            </tr>
+            <tr>
+                <td colspan="2" id="bjx-src"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div th:replace="model/foot::foot"></div>
+<div th:replace="model/etc::etc"></div>
+</body>
+<script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:inline="javascript">
+    var bjx = [[${bjx}]];
+    $(function () {
+        loadData();
+    });
+
+    function loadData() {
+        $("#bjx-name, #bud-bjx-name").html(bjx.name);
+        $("#bjx-img").html(getBjxSpan(bjx.name));
+        $("#bjx-src").html(bjx.src);
+        $(".bjx-img div span").css({'background':'url("/img/bjx_bg.jpg") no-repeat','background-size':'100% 100%'});
+    }
+
+    function getBjxSpan(str) {
+        var array = str.split("");
+        var span = '';
+        for (var i = 0; i < array.length; i++){
+            if (array[i] !== ' ')
+                span += '<span>'+array[i]+'</span>';
+        }
+        return span;
+    }
+</script>
+</html>
