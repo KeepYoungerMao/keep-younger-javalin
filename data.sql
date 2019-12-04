@@ -105,3 +105,96 @@ INSERT INTO `tt_pic_sub_class`(`pcs_id`,`pcs_p_id`,`pcs_name`) VALUES
 (2,1,'猫咪图片'),
 (3,2,'狗狗图图'),
 (4,2,'猫咪图图');
+
+-- 佛经
+
+CREATE TABLE `tt_buddhist_sutra_class` (
+  `bs_id` bigint(10) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `bs_name` varchar(50) DEFAULT NULL COMMENT 'name',
+  `bs_image` varchar(100) DEFAULT NULL COMMENT 'image',
+  `bs_intro` varchar(500) DEFAULT NULL COMMENT '介绍',
+  `bs_type` varchar(50) DEFAULT NULL COMMENT '种类',
+  PRIMARY KEY (`bs_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO tt_buddhist_sutra_class(bs_name,bs_image,bs_intro,bs_type) VALUES
+('四十二章经','sse.jpg','四十二章经很好看','经典佛经'),
+('心经','xj.jpg','心经很好看','净土五经');
+
+CREATE TABLE `tt_buddhist_sutra` (
+  `bs_id` bigint(10) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `bs_s_id` bigint(10) DEFAULT NULL COMMENT '源id',
+  `bs_title` varchar(100) DEFAULT NULL COMMENT '标题',
+  `bs_src` mediumtext COMMENT 'src',
+  PRIMARY KEY (`bs_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO tt_buddhist_sutra(bs_s_id,bs_title,bs_src) VALUES
+(1,'四十二章经全文','四十二章经全文是一部佛经。'),
+(2,'心经（上）','心经是一部佛经，大多数人都知道。'),
+(2,'心经（下）','心经是一部佛经，大多数人都知道。');
+
+-- 百家姓
+
+CREATE TABLE `tt_bjx` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` varchar(20) DEFAULT NULL COMMENT 'name',
+  `py` varchar(10) DEFAULT NULL COMMENT 'py',
+  `src` text COMMENT 'src',
+  PRIMARY KEY (`bj_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tt_bjx`(`name`,`py`,`src`) VALUES
+('赵','Z','<p>姓氏：赵</p><p>赵钱孙李，周吴郑王。赵为第一姓氏。</p>'),
+('钱','Q','<p>姓氏：钱</p><p>赵钱孙李，周吴郑王。钱为第二姓氏。</p>'),
+('孙','S','<p>姓氏：孙</p><p>赵钱孙李，周吴郑王。孙为第三姓氏。</p>'),
+('李','L','<p>姓氏：李</p><p>赵钱孙李，周吴郑王。李为第四姓氏。</p>');
+
+-- 古籍
+
+CREATE TABLE `tt_book` (
+  `boo_id` bigint(20) NOT NULL COMMENT '主键',
+  `boo_name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `boo_auth` varchar(50) DEFAULT NULL COMMENT '作者',
+  `boo_image` varchar(100) DEFAULT NULL COMMENT '图片路径',
+  `boo_s_image` varchar(100) DEFAULT NULL COMMENT '缩略图路径',
+  `boo_intro` text COMMENT '介绍',
+  `boo_type` varchar(20) DEFAULT NULL COMMENT '书籍类型',
+  `boo_type_id` bigint(4) DEFAULT NULL COMMENT '类型id',
+  `boo_dynasty` varchar(20) DEFAULT NULL COMMENT '所著年代',
+  `boo_dynasty_id` bigint(4) DEFAULT NULL COMMENT '年代id',
+  PRIMARY KEY (`boo_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO tt_book(boo_id,boo_name,boo_auth,boo_image,boo_s_image,boo_intro,boo_type,boo_type_id,boo_dynasty,boo_dynasty_id) VALUES
+(1,'三十六计','陈寿','1.jpg','101.jpg','三十六计是一本好书','军事',4,'清朝',14),
+(2,'宋史','黄石公','2.jpg','202.jpg','宋史是一本好书','史记',5,'西晋',5),
+(3,'聊斋志异','刘义庆','3.jpg','303.jpg','聊斋志异是一本好书','神魔',6,'明朝',13),
+(4,'西游记','罗贯中','4.jpg','404.jpg','西游记是一本好书','传记',1,'南宋',10);
+
+CREATE TABLE `tt_chapter` (
+  `cha_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cha_cha_id` bigint(10) DEFAULT NULL COMMENT '章节id',
+  `cha_name` varchar(50) DEFAULT NULL COMMENT '章节名称',
+  `cha_book_id` bigint(10) DEFAULT NULL COMMENT '所属书id',
+  `cha_src_id` bigint(10) DEFAULT NULL COMMENT '章节内容id',
+  PRIMARY KEY (`cha_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO tt_chapter(cha_cha_id,cha_name,cha_book_id,cha_src_id) VALUES
+(1,'三十六计全文',1,1),
+(1,'宋史全文',2,2),
+(1,'聊斋志异全文',3,3),
+(1,'西游记全文',4,4);
+
+CREATE TABLE `tt_chapter_src` (
+  `tcr_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tcr_intro` mediumtext COMMENT '章节内容',
+  PRIMARY KEY (`tcr_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO tt_chapter_src(tcr_intro) VALUES
+('<p>三十六计全文</p>'),
+('<p>宋史全文</p>'),
+('<p>聊斋志异全文</p>'),
+('<p>西游记全文</p>');
