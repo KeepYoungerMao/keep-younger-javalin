@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mao.mapper.classical.BookMapper">
+
+    <select id="getBooks" parameterType="com.mao.entity.classical.book.BookParam"
+            resultType="com.mao.entity.classical.book.SimpleBook">
+        SELECT `boo_id` AS `id`,`boo_name` AS `name`,`boo_auth` AS `auth`,`boo_s_image` AS `image`,
+               IF(LENGTH(`boo_intro`) > 80,CONCAT(LEFT(`boo_intro`,80),'...'),`boo_intro`) AS `intro`
+        FROM tt_book WHERE `boo_id` > 0
+        <if test="type > 0">
+            AND `boo_type_id` = #{type}
+        </if>
+        <if test="dynasty > 0">
+            AND `boo_dynasty_id` = #{dynasty}
+        </if>
+        LIMIT #{page},20
+    </select>
+
+    <select id="getBookCount" parameterType="com.mao.entity.classical.book.BookParam"
+            resultType="java.lang.Integer">
+        SELECT COUNT(`boo_id`)
+        FROM tt_book WHERE `boo_id` > 0
+        <if test="type > 0">
+            AND `boo_type_id` = #{type}
+        </if>
+        <if test="dynasty > 0">
+            AND `boo_dynasty_id` = #{dynasty}
+        </if>
+    </select>
+
+    <select id="getBook" parameterType="java.lang.Integer" resultType="com.mao.entity.classical.book.Book">
+        SELECT `boo_id` AS `id`,`boo_name` AS `name`,`boo_auth` AS `auth`,`boo_image` AS `image`,
+               `boo_intro` AS `intro`,`boo_type` AS `type`,`boo_type_id` AS `type_id`,
+               `boo_dynasty` AS `dynasty`,`boo_dynasty_id` AS `dynasty_id`
+        FROM tt_book WHERE `boo_id` = #{id}
+    </select>
+
+    <select id="getBookChapter" parameterType="java.lang.Integer"
+            resultType="com.mao.entity.classical.book.BookChapter">
+        SELECT `cha_src_id` AS `id`,`cha_name` AS `name`
+        FROM tt_chapter WHERE `cha_book_id` = #{id} ORDER BY `cha_cha_id`
+    </select>
+
+    <select id="getBookChapterSrc" parameterType="java.lang.Integer"
+            resultType="com.mao.entity.classical.book.BookChapterSrc">
+        SELECT c.`boo_id` as `id`,c.`boo_name` as `name`,c.`boo_auth` as `auth`,
+               c.`boo_image` as `image`,c.`boo_intro` as `intro`,c.`boo_type` as `type`,
+               c.`boo_dynasty` as `dynasty`,b.`cha_name` as `chapter`,a.`tcr_intro` as `src`
+        FROM tt_chapter_src as a
+        LEFT JOIN tt_chapter as b on a.`tcr_id` = b.`cha_src_id`
+        LEFT JOIN tt_book as c on b.`cha_book_id` = c.`boo_id`
+        WHERE a.`tcr_id` = #{id}
+    </select>
+
+</mapper>

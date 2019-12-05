@@ -37,14 +37,16 @@
     #idiom-box{
         margin: 30px 0;
         padding: 0 10px;
+        border-top: 1px solid #c3c3c3;
     }
     #idiom-box .idiom-item b{
         display: inline-block;
         text-align: right;
-        padding-right: 10px;
+        padding-right: 15px;
         width: 10%;
         vertical-align: top;
-        margin-top: 21px;
+        margin-top: 18px;
+        color: green;
     }
     #idiom-box .idiom-item p{
         display: inline-block;
@@ -53,20 +55,24 @@
     }
     .idiom-title{
         padding-left: 10%;
+        margin: 30px 0;
     }
     #idiom-py{
         font-size: 30px;
         height: 40px;
         line-height: 40px;
-        color: #999999;
+        color: #928e7d;
     }
     #idiom{
-        font-size: 36px;
+        font-size: 40px;
         height: 60px;
         line-height: 60px;
+        font-weight: bold;
     }
     #idiom span{
         margin-right: 100px;
+        color: #923508;
+        letter-spacing: 5px;
     }
 </style>
 <body>
@@ -102,29 +108,26 @@
             $("#idiom").append('<span>'+idiom.tt_traditional_name+'</span>');
         }
         var box = $("#idiom-box");
-        addBox("注音",idiom.tt_phonetic_notation);
-
-        addBox("使用程度",idiom.tt_man_days);
-        addBox("感情色彩",idiom.tt_emotion);
-        addBox("年代",idiom.tt_years);
-        addBox("近义词",idiom.tt_synonym);
-        addBox("反义词",idiom.tt_antonym);
-
-        addBox("解释",idiom.tt_explain);
-        addBox("出处",idiom.tt_source);
-        addBox("正音",idiom.tt_standard_notation);
-        addBox("辨析",idiom.tt_analysis);
-        addBox("辨形",idiom.tt_discriminate);
-        addBox("用法",idiom.tt_usage);
-        addBox("举例",idiom.tt_example);
-        addBox("成语故事",idiom.tt_story);
-
-        addBox("谜语",idiom.tt_riddle);
-        addBox("歇后语",idiom.tt_xie_hou_yu);
-        addBox("英语翻译",idiom.tt_english);
-        addBox("日语翻译",idiom.tt_japanese);
-        addBox("俄语翻译",idiom.tt_russian);
-        addBox("其他翻译",idiom.tt_ot_translate);
+        addBox("标准注音：",idiom.tt_phonetic_notation);
+        addBox("近 义 词：",idiom.tt_synonym);
+        addBox("反 义 词：",idiom.tt_antonym);
+        addBox("成语解释：",idiom.tt_explain);
+        addBox("成语出处：",idiom.tt_source);
+        addBox("标准正音：",idiom.tt_standard_notation);
+        addBox("标准辨析：",idiom.tt_analysis);
+        addBox("标准辨形：",idiom.tt_discriminate);
+        addBox("成语用法：",idiom.tt_usage);
+        addBox("成语举例：",idiom.tt_example);
+        addBox("成语故事：",idiom.tt_story);
+        addBox("成语谜语：",idiom.tt_riddle);
+        addBox("歇 后 语：",idiom.tt_xie_hou_yu);
+        addBox("使用程度：",idiom.tt_man_days);
+        addBox("感情色彩：",idiom.tt_emotion);
+        addBox("使用年代：",idiom.tt_years);
+        addBox("英语翻译：",idiom.tt_english);
+        addBox("日语翻译：",idiom.tt_japanese);
+        addBox("俄语翻译：",idiom.tt_russian);
+        addBox("其他翻译：",idiom.tt_ot_translate);
     });
 
     function addBox(t,s) {
@@ -137,7 +140,7 @@
      * @return {boolean}
      */
     function NP(s) {
-        return null != s && '' != s;
+        return null != s && '' !== s;
     }
 </script>
 </html>

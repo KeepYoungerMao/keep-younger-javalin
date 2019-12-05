@@ -3,6 +3,7 @@ package com.mao.service.color;
 import com.mao.config.MybatisConfigure;
 import com.mao.entity.color.*;
 import com.mao.mapper.color.PicMapper;
+import com.mao.util.ParamUtil;
 import io.javalin.http.Context;
 import org.apache.ibatis.session.SqlSession;
 
@@ -27,13 +28,10 @@ public class ColorService {
     }
 
     private static PicParam getParam(Context ctx){
-        int pid = 1, id = 1, page = 0;
-        try {
-            pid = Integer.parseInt(ctx.pathParam("pid"));
-            id = Integer.parseInt(ctx.pathParam("id"));
-            page = Integer.parseInt(ctx.pathParam("page"));
-            page = page <=1 ? 0 : (page -1)*40;
-        } catch (NumberFormatException ignored) {}
+        int pid = ParamUtil.getInt(ctx.pathParam("pid"),1);
+        int id = ParamUtil.getInt(ctx.pathParam("id"),1);
+        int page = ParamUtil.getInt(ctx.pathParam("page"));
+        page = page <=1 ? 0 : (page -1)*40;
         return new PicParam(pid,id,page,0);
     }
 
@@ -70,10 +68,7 @@ public class ColorService {
     public static void picSrc(Context ctx){
         SqlSession session = MybatisConfigure.getSession();
         PicMapper mapper = session.getMapper(PicMapper.class);
-        int id = 0;
-        try {
-            id = Integer.parseInt(ctx.pathParam("id"));
-        } catch (NumberFormatException ignored) {}
+        int id = ParamUtil.getInt(ctx.pathParam("id"));
         Pic pic = mapper.getPicSrc(id);
         session.close();
         ctx.render("color/picSrc.html",addMap("pic",pic));

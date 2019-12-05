@@ -45,10 +45,7 @@ public class BjxService {
     public static void bjxSrc(Context ctx){
         SqlSession session = MybatisConfigure.getSession();
         BjxMapper mapper = session.getMapper(BjxMapper.class);
-        int id = 0;
-        try {
-            id = Integer.parseInt(ctx.pathParam("id"));
-        } catch (NumberFormatException ignored) {}
+        int id = ParamUtil.getInt(ctx.pathParam("id"));
         BjxSrc bjx = mapper.getBjxSrc(id);
         ctx.render("/classical/bjx/bjxSrc.html",addMap("bjx",bjx));
     }

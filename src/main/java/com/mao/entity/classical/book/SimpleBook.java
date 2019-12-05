@@ -12,5 +12,7 @@ import lombok.Setter;
 public class SimpleBook {
     private int id;         //id
     private String name;    //name
+    private String auth;    //author
     private String image;   //image
+    private String intro;   //introduction
 }

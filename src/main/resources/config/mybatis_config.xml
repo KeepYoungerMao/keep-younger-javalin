@@ -24,6 +24,7 @@
         <mapper resource="mapper/classical/BuddhistMapper.xml"/>
         <mapper resource="mapper/classical/BjxMapper.xml"/>
         <mapper resource="mapper/classical/IdiomMapper.xml"/>
+        <mapper resource="mapper/classical/BookMapper.xml"/>
     </mappers>
     
 </configuration>

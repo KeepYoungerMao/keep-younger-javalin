@@ -6,6 +6,7 @@ import com.mao.entity.classical.buddhist.BuddhistChapter;
 import com.mao.entity.classical.buddhist.BuddhistChapterSrc;
 import com.mao.entity.classical.buddhist.SimpleBuddhist;
 import com.mao.mapper.classical.BuddhistMapper;
+import com.mao.util.ParamUtil;
 import io.javalin.http.Context;
 import org.apache.ibatis.session.SqlSession;
 
@@ -29,10 +30,7 @@ public class BuddhistService {
     public static void buddhistChapter(Context ctx){
         SqlSession session = MybatisConfigure.getSession();
         BuddhistMapper mapper = session.getMapper(BuddhistMapper.class);
-        int id = 0;
-        try {
-            id = Integer.parseInt(ctx.pathParam("id"));
-        } catch (NumberFormatException ignored) {}
+        int id = ParamUtil.getInt(ctx.pathParam("id"));
         Buddhist buddhist = mapper.getBuddhistSrc(id);
         List<BuddhistChapter> chapter = mapper.getBuddhistChapter(id);
         session.close();
@@ -42,10 +40,7 @@ public class BuddhistService {
     public static void chapter(Context ctx){
         SqlSession session = MybatisConfigure.getSession();
         BuddhistMapper mapper = session.getMapper(BuddhistMapper.class);
-        int id = 0;
-        try {
-            id = Integer.parseInt(ctx.pathParam("id"));
-        } catch (NumberFormatException ignored) {}
+        int id = ParamUtil.getInt(ctx.pathParam("id"));
         BuddhistChapterSrc src = mapper.getBuddhistChapterSrc(id);
         session.close();
         ctx.render("classical/buddhist/chapter.html",addMap("chapter",src));

@@ -2,12 +2,14 @@ package com.mao;
 
 import com.mao.service.about.AboutService;
 import com.mao.service.classical.BjxService;
+import com.mao.service.classical.BookService;
 import com.mao.service.classical.BuddhistService;
 import com.mao.service.classical.IdiomService;
 import com.mao.service.color.ColorService;
 import com.mao.service.index.IndexService;
 import com.mao.service.ray.RayService;
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 import io.javalin.plugin.rendering.template.JavalinThymeleaf;
 
 import static com.mao.config.ThymeleafConfig.thymeleafConfig;
@@ -38,7 +40,7 @@ public class Main {
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
-            //config.addStaticFiles("F:\\self\\image", Location.EXTERNAL);
+            config.addStaticFiles("F:\\self\\image", Location.EXTERNAL);
         }).start(8080);
 
         app.routes(() -> {
@@ -73,7 +75,10 @@ public class Main {
                     get("src/:id", IdiomService::idiomSrc);
                 });
                 path("book", () -> {
-
+                    get("", BookService::book);
+                    get(":filter", BookService::book2);
+                    get("chapter/:id", BookService::bookChapter);
+                    get("chapter/src/:id", BookService::chapter);
                 });
             });
         });

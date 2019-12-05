@@ -57,10 +57,7 @@ public class IdiomService {
     public static void idiomSrc(Context ctx){
         SqlSession session = MybatisConfigure.getSession();
         IdiomMapper mapper = session.getMapper(IdiomMapper.class);
-        int id = 0;
-        try {
-            id = Integer.parseInt(ctx.pathParam("id"));
-        } catch (NumberFormatException ignored) {}
+        int id = ParamUtil.getInt(ctx.pathParam("id"));
         Idiom idiom = mapper.getIdiomSrc(id);
         session.close();
         ctx.render("classical/idiom/idiomSrc.html", addMap("idiom",idiom));
