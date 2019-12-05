@@ -1,0 +1,25 @@
+package com.mao.util;
+
+/**
+ * 参数解析
+ * @author mao by 10:46 2019/12/5
+ */
+public class ParamUtil {
+
+    private static final String reg = "_";
+
+    /**
+     * 获取参数
+     * @param param 参数字符串
+     * @return 参数数组
+     */
+    public static String[] getParam(String param){
+        param = " "+param+" ";
+        String[] split = param.split(reg);
+        String[] result = new String[split.length];
+        for (int i = 0; i < split.length; i++)
+            result[i] = split[i].trim();
+        return result;
+    }
+
+}

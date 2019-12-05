@@ -5,7 +5,10 @@
 
     <select id="getBjx" parameterType="com.mao.entity.classical.bjx.BjxParam"
             resultType="com.mao.entity.classical.bjx.Bjx">
-        SELECT `id`,`name` FROM tt_bjx WHERE `py` = #{py}
+        SELECT `id`,`name` FROM tt_bjx WHERE `id` > 0
+        <if test="py != null">
+            AND `py` = #{py}
+        </if>
         <if test="name != null">
             AND LOCATE(#{name},`name`) > 0
         </if>

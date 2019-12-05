@@ -23,6 +23,7 @@
         <mapper resource="mapper/color/PicMapper.xml"/>
         <mapper resource="mapper/classical/BuddhistMapper.xml"/>
         <mapper resource="mapper/classical/BjxMapper.xml"/>
+        <mapper resource="mapper/classical/IdiomMapper.xml"/>
     </mappers>
     
 </configuration>

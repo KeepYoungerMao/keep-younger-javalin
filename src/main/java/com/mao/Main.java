@@ -1,13 +1,13 @@
 package com.mao;
 
-import com.mao.service.classical.BjxService;
 import com.mao.service.about.AboutService;
+import com.mao.service.classical.BjxService;
 import com.mao.service.classical.BuddhistService;
+import com.mao.service.classical.IdiomService;
 import com.mao.service.color.ColorService;
 import com.mao.service.index.IndexService;
 import com.mao.service.ray.RayService;
 import io.javalin.Javalin;
-import io.javalin.http.staticfiles.Location;
 import io.javalin.plugin.rendering.template.JavalinThymeleaf;
 
 import static com.mao.config.ThymeleafConfig.thymeleafConfig;
@@ -38,7 +38,7 @@ public class Main {
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
-            config.addStaticFiles("F:\\self\\image", Location.EXTERNAL);
+            //config.addStaticFiles("F:\\self\\image", Location.EXTERNAL);
         }).start(8080);
 
         app.routes(() -> {
@@ -57,13 +57,24 @@ public class Main {
                 get("pic/src/:id",ColorService::picSrc);
             });
             path("classical", () -> {
-                get("buddhist", BuddhistService::buddhist);
-                get("buddhist/:id", BuddhistService::buddhistChapter);
-                get("buddhist/chapter/:id", BuddhistService::chapter);
-                get("bjx", BjxService::bjx);
-                get("bjx/:py", BjxService::bjx2);
-                get("bjx/:py/:name", BjxService::bjx3);
-                get("bjxSrc/:id", BjxService::bjxSrc);
+                path("buddhist", () ->{
+                    get("", BuddhistService::buddhist);
+                    get(":id", BuddhistService::buddhistChapter);
+                    get("chapter/:id", BuddhistService::chapter);
+                });
+                path("bjx", () -> {
+                    get("", BjxService::bjx);
+                    get(":filter", BjxService::bjx2);
+                    get("src/:id", BjxService::bjxSrc);
+                });
+                path("idiom", () -> {
+                    get("", IdiomService::idiom);
+                    get(":filter", IdiomService::idiom2);
+                    get("src/:id", IdiomService::idiomSrc);
+                });
+                path("book", () -> {
+
+                });
             });
         });
 

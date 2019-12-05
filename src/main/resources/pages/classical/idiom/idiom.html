@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>百家姓大全</title>
+    <title>成语大全</title>
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
     <link rel="stylesheet" th:href="@{/css/model.css}">
     <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
@@ -111,6 +111,36 @@
         cursor: pointer;
         z-index: 1;
     }
+
+    /* page */
+    #page-box{
+        margin: 20px auto;
+        text-align: center;
+    }
+    #page-box a, #page-box span{
+        display: inline-block;
+        height: 34px;
+        width: 34px;
+        text-align: center;
+        line-height: 34px;
+        font-weight: bold;
+        margin: 0 4px;
+    }
+    #page-box a{
+        background-color: #f1f1f1;
+        text-decoration: none;
+        color: #444444;
+    }
+    #page-box a:hover{
+        background-color: #e1e1e1;
+    }
+    #page-box a#next-page{
+        width: 68px;
+    }
+    #page-box span{
+        background-color: green;
+        color: #ffffff;
+    }
 </style>
 <body>
 <div th:replace="model/head::top"></div>
@@ -127,16 +157,21 @@
                 <!--<li><a href=""><span>白</span></a></li>-->
             </ul>
         </div>
+        <div id="page-box"></div>
     </div>
 </div>
 <div th:replace="model/foot::foot"></div>
 <div th:replace="model/etc::etc"></div>
 </body>
 <script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:src="@{/js/util/page.js}"></script>
 <script th:inline="javascript">
+    var idioms = [[${idioms}]];
+    var idiomParam = [[${idiomParam}]];
+    idiomParam.page = (idiomParam.page <= 0) ? 1 : (idiomParam.page)/40+1;
     var py = ['A','B','C','D','E','F','G','H','J','K','L','M','N','O','P','Q','R','S','T','W','X','Y','Z'];
-    var bjx = [[${bjx}]];
-    var bjxParam = [[${bjxParam}]];
+    console.log(idioms);
+    console.log(idiomParam);
     $(function () {
         loadClass();
         loadData();
@@ -145,23 +180,28 @@
     function loadClass() {
         var ul = $(".bjx-class ul");
         for (var i = 0; i < py.length; i++){
-            $(ul).append('<li><a href="/classical/bjx/'+py[i]+'_">'+py[i]+'</a></li>');
+            $(ul).append('<li><a href="/classical/idiom/'+py[i]+'_">'+py[i]+'</a></li>');
         }
     }
 
     function loadData() {
-        for (var i = 0, len = bjx.length; i < len; i++){
-            $(".bjx-box ul").append('<li><a href="/classical/bjx/src/'+bjx[i].id+'">'+getBjxSpan(bjx[i].name)+'</a></li>');
+        for (var i = 0, len = idioms.length; i < len; i++){
+            $(".bjx-box ul").append('<li><a href="/classical/idiom/src/'+idioms[i].id+'">'+getBjxSpan(idioms[i].name)+'</a></li>');
         }
         $(".bjx-box ul li a span").css({'background':'url("/img/bjx_bg.jpg") no-repeat','background-size':'100% 100%'});
         var pys = $(".bjx-class ul li a");
         for (var j = 0; j < pys.length; j++){
-            if ($(pys[j]).text() === bjxParam.py){
+            if (null != idiomParam.sp && $(pys[j]).text() === idiomParam.sp.toUpperCase()){
                 $(pys[j]).parent().addClass("bjx-class-active");
             }
         }
-        if (null != bjxParam.name){
-            $("#bjx-search").val(bjxParam.name).focus();
+        if (null != idiomParam.qp){
+            $("#bjx-search").val(idiomParam.qp).focus();
+        }else if (null != idiomParam.name){
+            $("#bjx-search").val(idiomParam.name).focus();
+        }
+        if (idiomParam.page >= 0){
+            loadPage(idiomParam.page,Math.ceil((idiomParam.total)/40),'/classical/idiom/'+idiomParam.sp+'_',$("#page-box"));
         }
     }
 
@@ -174,13 +214,13 @@
         }
         return span;
     }
-    
+
     function search() {
         var name = $("#bjx-search").val();
         if (name){
-            window.location.href = "/classical/bjx/_"+name;
+            window.location.href = "/classical/idiom/_"+name;
         } else {
-            window.location.href = "/classical/bjx/A_";
+            window.location.href = "/classical/idiom/A_0";
         }
     }
 

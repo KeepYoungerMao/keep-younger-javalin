@@ -8,6 +8,11 @@ import java.util.Map;
  */
 public class MapUtil {
 
+    /**
+     * 将参数装进map中，用于封装前端返回参数
+     * @param var 多个参数，需要偶数个参数
+     * @return map
+     */
     public static Map<String, Object> addMap(Object ... var){
         Map<String, Object> map = new HashMap<>();
         int len = var.length;

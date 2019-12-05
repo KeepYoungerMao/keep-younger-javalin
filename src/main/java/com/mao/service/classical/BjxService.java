@@ -5,6 +5,8 @@ import com.mao.entity.classical.bjx.Bjx;
 import com.mao.entity.classical.bjx.BjxParam;
 import com.mao.entity.classical.bjx.BjxSrc;
 import com.mao.mapper.classical.BjxMapper;
+import com.mao.util.ParamUtil;
+import com.mao.util.SU;
 import io.javalin.http.Context;
 import org.apache.ibatis.session.SqlSession;
 
@@ -23,13 +25,12 @@ public class BjxService {
     }
 
     public static void bjx2(Context ctx){
-        String py = ctx.pathParam("py");
-        bjxS(ctx,new BjxParam(py,null));
-    }
-
-    public static void bjx3(Context ctx){
-        String py = ctx.pathParam("py");
-        String name = ctx.pathParam("name");
+        String[] param = ParamUtil.getParam(ctx.pathParam("filter"));
+        String py = null, name = null;
+        if (param.length >= 2){
+            py = SU.isEmpty(param[0]) ? null : param[0].toUpperCase();
+            name = SU.isEmpty(param[1]) ? null : param[1];
+        }
         bjxS(ctx,new BjxParam(py,name));
     }
 

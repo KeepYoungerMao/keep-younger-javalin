@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mao.mapper.classical.IdiomMapper">
+
+    <select id="getIdiom" parameterType="com.mao.entity.classical.idiom.IdiomParam"
+            resultType="com.mao.entity.classical.idiom.SimpleIdiom">
+        SELECT `tt_id` AS `id`,`tt_name` AS `name`
+        FROM tt_idiom_src WHERE `tt_id` > 0
+        <if test="name != null">
+            AND LOCATE(#{name},tt_name) > 0 LIMIT 0,500
+        </if>
+        <if test="sp != null">
+            AND `tt_first_pin` = #{sp}
+        </if>
+        <if test="qp != null">
+            AND LOCATE(#{qp},tt_simple_pin) > 0
+        </if>
+        <if test="page > -1">
+            LIMIT #{page},40
+        </if>
+    </select>
+
+    <select id="getIdiomSrc" parameterType="java.lang.Integer"
+            resultType="com.mao.entity.classical.idiom.Idiom">
+        SELECT * FROM tt_idiom_src WHERE `tt_id` = #{id}
+    </select>
+
+    <select id="getIdiomCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(`tt_id`) FROM tt_idiom_src WHERE `tt_first_pin` = #{sp}
+    </select>
+
+</mapper>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>成语大全</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+<style>
+    .contain{
+        background-color: #d3d3d3;
+    }
+    .bud-sign{
+        height: 32px;
+        line-height: 32px;
+        color: #666666;
+        margin: 15px 0;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    .bud-sign span{
+        margin: 0 1px;
+    }
+    .bud-sign span a{
+        color: #666666;
+        text-decoration: none;
+    }
+    .bud-sign span a:hover{
+        color: #333333;
+    }
+    .bud-sign .bud-sign-pre{
+        padding-left: 15px;
+    }
+    #idiom-box{
+        margin: 30px 0;
+        padding: 0 10px;
+    }
+    #idiom-box .idiom-item b{
+        display: inline-block;
+        text-align: right;
+        padding-right: 10px;
+        width: 10%;
+        vertical-align: top;
+        margin-top: 21px;
+    }
+    #idiom-box .idiom-item p{
+        display: inline-block;
+        width: 88%;
+        line-height: 180%;
+    }
+    .idiom-title{
+        padding-left: 10%;
+    }
+    #idiom-py{
+        font-size: 30px;
+        height: 40px;
+        line-height: 40px;
+        color: #999999;
+    }
+    #idiom{
+        font-size: 36px;
+        height: 60px;
+        line-height: 60px;
+    }
+    #idiom span{
+        margin-right: 100px;
+    }
+</style>
+<body>
+<div th:replace="model/head::top"></div>
+<div class="contain">
+    <div class="box">
+        <div class="bud-sign">
+            <span class="bud-sign-pre"><a th:href="@{/classical/idiom}">成语大全</a></span>
+            <span>/</span>
+            <span id="idiom-name"></span>
+        </div>
+        <div class="idiom-title">
+            <div id="idiom-py"></div>
+            <div id="idiom"></div>
+        </div>
+        <div id="idiom-box">
+
+        </div>
+    </div>
+</div>
+<div th:replace="model/foot::foot"></div>
+<div th:replace="model/etc::etc"></div>
+</body>
+<script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:inline="javascript">
+    var idiom = [[${idiom}]];
+    console.log(idiom);
+    $(function () {
+        $("#idiom-name").html(idiom.tt_name);
+        $("#idiom-py").append('<span>'+idiom.tt_full_pin+'</span>');
+        $("#idiom").append('<span>'+idiom.tt_name+'</span>');
+        if (null != idiom.tt_traditional_name){
+            $("#idiom").append('<span>'+idiom.tt_traditional_name+'</span>');
+        }
+        var box = $("#idiom-box");
+        addBox("注音",idiom.tt_phonetic_notation);
+
+        addBox("使用程度",idiom.tt_man_days);
+        addBox("感情色彩",idiom.tt_emotion);
+        addBox("年代",idiom.tt_years);
+        addBox("近义词",idiom.tt_synonym);
+        addBox("反义词",idiom.tt_antonym);
+
+        addBox("解释",idiom.tt_explain);
+        addBox("出处",idiom.tt_source);
+        addBox("正音",idiom.tt_standard_notation);
+        addBox("辨析",idiom.tt_analysis);
+        addBox("辨形",idiom.tt_discriminate);
+        addBox("用法",idiom.tt_usage);
+        addBox("举例",idiom.tt_example);
+        addBox("成语故事",idiom.tt_story);
+
+        addBox("谜语",idiom.tt_riddle);
+        addBox("歇后语",idiom.tt_xie_hou_yu);
+        addBox("英语翻译",idiom.tt_english);
+        addBox("日语翻译",idiom.tt_japanese);
+        addBox("俄语翻译",idiom.tt_russian);
+        addBox("其他翻译",idiom.tt_ot_translate);
+    });
+
+    function addBox(t,s) {
+        if (NP(s))
+            $("#idiom-box").append('<div class="idiom-item"><b>'+t+'</b><p>'+s+'</p></div>');
+    }
+
+    /**
+     * 判断是否不为空
+     * @return {boolean}
+     */
+    function NP(s) {
+        return null != s && '' != s;
+    }
+</script>
+</html>

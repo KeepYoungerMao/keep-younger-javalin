@@ -198,3 +198,41 @@ INSERT INTO tt_chapter_src(tcr_intro) VALUES
 ('<p>宋史全文</p>'),
 ('<p>聊斋志异全文</p>'),
 ('<p>西游记全文</p>');
+
+-- 成语
+
+CREATE TABLE `tt_idiom_src` (
+  `tt_id` bigint(10) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `tt_name` varchar(100) NOT NULL COMMENT '名称',
+  `tt_full_pin` varchar(100) DEFAULT NULL COMMENT '全拼',
+  `tt_traditional_name` varchar(100) DEFAULT NULL COMMENT '繁体',
+  `tt_first_pin` varchar(10) DEFAULT NULL COMMENT '首拼',
+  `tt_simple_pin` varchar(50) DEFAULT NULL COMMENT '简拼',
+  `tt_phonetic_notation` varchar(300) DEFAULT NULL COMMENT '注音',
+  `tt_standard_notation` varchar(300) DEFAULT NULL COMMENT '正音',
+  `tt_explain` varchar(500) DEFAULT NULL COMMENT '解释',
+  `tt_source` varchar(500) DEFAULT NULL COMMENT '出处',
+  `tt_analysis` varchar(500) DEFAULT NULL COMMENT '辨析',
+  `tt_story` text COMMENT '成语故事',
+  `tt_man_days` varchar(30) DEFAULT NULL COMMENT '使用程度:常用，一般，生僻',
+  `tt_emotion` varchar(30) DEFAULT NULL COMMENT '感情色彩：中兴，褒义，贬义',
+  `tt_usage` varchar(300) DEFAULT NULL COMMENT '用法',
+  `tt_discriminate` varchar(300) DEFAULT NULL COMMENT '辨形',
+  `tt_years` varchar(30) DEFAULT NULL COMMENT '年代',
+  `tt_synonym` varchar(300) DEFAULT NULL COMMENT '近义词',
+  `tt_antonym` varchar(300) DEFAULT NULL COMMENT '反义词',
+  `tt_example` varchar(2000) DEFAULT NULL COMMENT '举例',
+  `tt_riddle` varchar(200) DEFAULT NULL COMMENT '谜语',
+  `tt_xie_hou_yu` varchar(200) DEFAULT NULL COMMENT '歇后语',
+  `tt_english` varchar(500) DEFAULT NULL COMMENT '英语翻译',
+  `tt_japanese` varchar(500) DEFAULT NULL COMMENT '日语翻译',
+  `tt_russian` varchar(500) DEFAULT NULL COMMENT '俄语翻译',
+  `tt_ot_translate` varchar(500) DEFAULT NULL COMMENT '其它翻译',
+  PRIMARY KEY (`tt_id`,`tt_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO tt_idiom_src(tt_name,tt_full_pin,tt_first_pin,tt_simple_pin,tt_explain) VALUES
+('矮人看戏','ǎi rén kàn xì','a','ARKX','矮子挤在站着的人群里看戏；看不真切；只好随声附和。'),
+('爱才如命','ài cái rú mìng','a','ACRM','爱惜人才就像爱惜自己的生命一样。'),
+('傲霜斗雪','ào shuāng dòu xuě','a','ASDX','傲视寒霜，抗击白雪。形容不畏严寒。比喻人身处逆境而不屈服。'),
+('奥妙无穷','ào miào wú qióng','a','AMWQ','奥：深奥。指其中不容易被人知道而又奇妙有趣之处极多。');
