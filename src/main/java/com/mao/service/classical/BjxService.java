@@ -1,6 +1,7 @@
 package com.mao.service.classical;
 
 import com.mao.config.MybatisConfigure;
+import com.mao.config.Path;
 import com.mao.entity.classical.bjx.Bjx;
 import com.mao.entity.classical.bjx.BjxParam;
 import com.mao.entity.classical.bjx.BjxSrc;
@@ -39,7 +40,7 @@ public class BjxService {
         BjxMapper mapper = session.getMapper(BjxMapper.class);
         List<Bjx> bjx = mapper.getBjx(param);
         session.close();
-        ctx.render("classical/bjx/bjx.html",addMap("bjx",bjx,"bjxParam",param));
+        ctx.render(Path.BJX_INDEX.web(),addMap("bjx",bjx,"bjxParam",param));
     }
 
     public static void bjxSrc(Context ctx){
@@ -47,7 +48,7 @@ public class BjxService {
         BjxMapper mapper = session.getMapper(BjxMapper.class);
         int id = ParamUtil.getInt(ctx.pathParam("id"));
         BjxSrc bjx = mapper.getBjxSrc(id);
-        ctx.render("/classical/bjx/bjxSrc.html",addMap("bjx",bjx));
+        ctx.render(Path.BJX_SRC.web(),addMap("bjx",bjx));
     }
 
 }

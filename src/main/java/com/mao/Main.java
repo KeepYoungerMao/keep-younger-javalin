@@ -1,5 +1,6 @@
 package com.mao;
 
+import com.mao.config.Path;
 import com.mao.service.about.AboutService;
 import com.mao.service.classical.BjxService;
 import com.mao.service.classical.BookService;
@@ -44,41 +45,41 @@ public class Main {
         }).start(8080);
 
         app.routes(() -> {
-            get("", IndexService::index);
-            path("ray", () -> {
-                get("bilibili", RayService::bilibili);
-                get("tv", RayService::tv);
+            get(Path.INDEX.url(), IndexService::index);
+            path(Path.RAY.url(), () -> {
+                get(Path.BILI.url(), RayService::bilibili);
+                get(Path.TV.url(), RayService::tv);
             });
-            path("about", () -> {
-                get(":page", AboutService::about);
-                post("feedback", AboutService::feedback);
+            path(Path.ABOUT.url(), () -> {
+                get(Path.ABOUT_PAGE.url(), AboutService::about);
+                post(Path.FEEDBACK.url(), AboutService::feedback);
             });
-            path("color", () -> {
-                get("pic", ColorService::pic);
-                get("pic/:pid/:id/:page", ColorService::pic2);
-                get("pic/src/:id",ColorService::picSrc);
+            path(Path.COLOR.url(), () -> {
+                get(Path.PIC.url(), ColorService::pic);
+                get(Path.PIC_LIST.url(), ColorService::pic2);
+                get(Path.PIC_SRC.url(), ColorService::picSrc);
             });
-            path("classical", () -> {
-                path("buddhist", () ->{
-                    get("", BuddhistService::buddhist);
-                    get(":id", BuddhistService::buddhistChapter);
-                    get("chapter/:id", BuddhistService::chapter);
+            path(Path.CLASSICAL.url(), () -> {
+                path(Path.BUDDHIST.url(), () ->{
+                    get(Path.BUDDHIST_INDEX.url(), BuddhistService::buddhist);
+                    get(Path.BUDDHIST_SRC.url(), BuddhistService::buddhistChapter);
+                    get(Path.BUDDHIST_CHAPTER.url(), BuddhistService::chapter);
                 });
-                path("bjx", () -> {
-                    get("", BjxService::bjx);
-                    get(":filter", BjxService::bjx2);
-                    get("src/:id", BjxService::bjxSrc);
+                path(Path.BJX.url(), () -> {
+                    get(Path.BJX_INDEX.url(), BjxService::bjx);
+                    get(Path.BJX_LIST.url(), BjxService::bjx2);
+                    get(Path.BJX_SRC.url(), BjxService::bjxSrc);
                 });
-                path("idiom", () -> {
-                    get("", IdiomService::idiom);
-                    get(":filter", IdiomService::idiom2);
-                    get("src/:id", IdiomService::idiomSrc);
+                path(Path.IDIOM.url(), () -> {
+                    get(Path.IDIOM_INDEX.url(), IdiomService::idiom);
+                    get(Path.IDIOM_LIST.url(), IdiomService::idiom2);
+                    get(Path.IDIOM_SRC.url(), IdiomService::idiomSrc);
                 });
-                path("book", () -> {
-                    get("", BookService::book);
-                    get(":filter", BookService::book2);
-                    get("chapter/:id", BookService::bookChapter);
-                    get("chapter/src/:id", BookService::chapter);
+                path(Path.BOOK.url(), () -> {
+                    get(Path.BOOK_INDEX.url(), BookService::book);
+                    get(Path.BOOK_LIST.url(), BookService::book2);
+                    get(Path.BOOK_CHAPTER.url(), BookService::bookChapter);
+                    get(Path.BOOK_SRC.url(), BookService::chapter);
                 });
             });
         });

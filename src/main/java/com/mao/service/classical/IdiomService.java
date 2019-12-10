@@ -1,6 +1,7 @@
 package com.mao.service.classical;
 
 import com.mao.config.MybatisConfigure;
+import com.mao.config.Path;
 import com.mao.entity.classical.idiom.Idiom;
 import com.mao.entity.classical.idiom.IdiomParam;
 import com.mao.entity.classical.idiom.SimpleIdiom;
@@ -51,7 +52,7 @@ public class IdiomService {
             param.setTotal(count);
         }
         session.close();
-        ctx.render("classical/idiom/idiom.html", addMap("idioms",idioms,"idiomParam",param));
+        ctx.render(Path.IDIOM_INDEX.web(), addMap("idioms",idioms,"idiomParam",param));
     }
 
     public static void idiomSrc(Context ctx){
@@ -60,7 +61,7 @@ public class IdiomService {
         int id = ParamUtil.getInt(ctx.pathParam("id"));
         Idiom idiom = mapper.getIdiomSrc(id);
         session.close();
-        ctx.render("classical/idiom/idiomSrc.html", addMap("idiom",idiom));
+        ctx.render(Path.IDIOM_SRC.web(), addMap("idiom",idiom));
     }
 
 }

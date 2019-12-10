@@ -1,5 +1,6 @@
 package com.mao.service.about;
 
+import com.mao.config.Path;
 import com.mao.mapper.about.FeedbackMapper;
 import com.mao.config.MybatisConfigure;
 import com.mao.entity.about.FeedBack;
@@ -16,7 +17,7 @@ public class AboutService extends BaseService {
 
     public static void about(Context ctx){
         String page = ctx.pathParam("page");
-        ctx.render("about/"+page+".html");
+        ctx.render(Path.ABOUT_PAGE.web().replaceAll("[$]",page));
     }
 
     public static void feedback(Context ctx){

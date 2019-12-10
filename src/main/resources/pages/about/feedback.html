@@ -147,7 +147,7 @@
             tips("请留个邮箱吧");
             return;
         }
-        $(".btn button").css("disabled","disabled");
+        $(".btn button").html("提交中. . .").css("background","gray").attr("disabled",true);
         var feedback = {
             title: title,
             advise: advise,
@@ -162,7 +162,7 @@
             success: function (data) {
                 setTimeout(function () {
                     pre(data);
-                    $(".btn button").css("disabled","");
+                    $(".btn button").html("提交反馈").css("background","green").attr("disabled",false);
                 },1000);
             }
         });

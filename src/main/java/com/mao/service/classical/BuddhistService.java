@@ -1,6 +1,7 @@
 package com.mao.service.classical;
 
 import com.mao.config.MybatisConfigure;
+import com.mao.config.Path;
 import com.mao.entity.classical.buddhist.Buddhist;
 import com.mao.entity.classical.buddhist.BuddhistChapter;
 import com.mao.entity.classical.buddhist.BuddhistChapterSrc;
@@ -24,7 +25,7 @@ public class BuddhistService {
         BuddhistMapper mapper = session.getMapper(BuddhistMapper.class);
         List<SimpleBuddhist> buddhist = mapper.getBuddhist();
         session.close();
-        ctx.render("classical/buddhist/buddhist.html",addMap("buddhist",buddhist));
+        ctx.render(Path.BUDDHIST_INDEX.web(),addMap("buddhist",buddhist));
     }
 
     public static void buddhistChapter(Context ctx){
@@ -34,7 +35,7 @@ public class BuddhistService {
         Buddhist buddhist = mapper.getBuddhistSrc(id);
         List<BuddhistChapter> chapter = mapper.getBuddhistChapter(id);
         session.close();
-        ctx.render("classical/buddhist/buddhistSrc.html",addMap("buddhist",buddhist,"chapter",chapter));
+        ctx.render(Path.BUDDHIST_SRC.web(),addMap("buddhist",buddhist,"chapter",chapter));
     }
 
     public static void chapter(Context ctx){
@@ -43,7 +44,7 @@ public class BuddhistService {
         int id = ParamUtil.getInt(ctx.pathParam("id"));
         BuddhistChapterSrc src = mapper.getBuddhistChapterSrc(id);
         session.close();
-        ctx.render("classical/buddhist/chapter.html",addMap("chapter",src));
+        ctx.render(Path.BUDDHIST_CHAPTER.web(),addMap("chapter",src));
     }
 
 }

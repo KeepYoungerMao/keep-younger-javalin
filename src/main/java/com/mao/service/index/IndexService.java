@@ -1,5 +1,6 @@
 package com.mao.service.index;
 
+import com.mao.config.Path;
 import io.javalin.http.Context;
 
 /**
@@ -8,7 +9,7 @@ import io.javalin.http.Context;
 public class IndexService {
 
     public static void index(Context ctx){
-        ctx.render("index.html");
+        ctx.render(Path.INDEX.web());
     }
 
 }
