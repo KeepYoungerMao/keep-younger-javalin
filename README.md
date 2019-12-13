@@ -6,3 +6,9 @@
 
 #### After you import the SQL file, the project may not work properly,Please read the notes in the SQL file and modify data.
 #### 导入sql文件后，项目运行仍会报错，请阅读sql文件注释，并修改数据。
+
+---
+
+#### 笔记
+#### [jackson报错：Cannot construct instance of 'XXX' (no Creators, like default construct, exist)](wrong/jackson_01.md)
+#### [jackson的使用](use/JsonUtil.java)
