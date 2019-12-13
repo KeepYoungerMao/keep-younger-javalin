@@ -15,4 +15,4 @@
     使用了@AllArgsConstructor但是没有使用 @NoArgsConstructor ，编译后的class就没有无参构造。
     也就是`lombok`看你只加了@AllArgsConstructor就不会帮你自动加上无参构造。
 ###### 解决：
-    加上@AllArgsConstructor就可以了
+    加上@NoArgsConstructor注解就可以了
