@@ -11,6 +11,7 @@
 
 #### 错误记录
 #### [jackson报错：Cannot construct instance of 'XXX' (no Creators, like default construct, exist)](wrong/jackson_01.md)
+#### [mybatis非法反射警告：An illegal reflective access operation has occurred](wrong/mybatis_01.md)
 
 ---
 

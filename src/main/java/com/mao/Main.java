@@ -41,7 +41,7 @@ public class Main {
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
-            config.addStaticFiles("F:\\self\\image", Location.EXTERNAL);
+            config.addStaticFiles("D:\\image", Location.EXTERNAL);
         }).start(8080);
 
         app.routes(() -> {
