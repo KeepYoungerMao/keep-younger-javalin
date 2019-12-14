@@ -18,5 +18,5 @@
 #### 笔记
 #### [jackson的使用](src/main/java/com/mao/util/JsonUtil.java)
 #### [字符串的操作、判断（包括手机号、邮箱、身份证等）](src/main/java/com/mao/util/SU.java)
-#### [字符串加密、解密](src/maim/java/com/mao/util/SecretUtil.java)
+#### [字符串加密、解密](src/main/java/com/mao/util/SecretUtil.java)
 #### [基本排序方法记录](src/main/java/com/mao/util/SortUtil.java)
