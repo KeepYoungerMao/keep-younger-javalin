@@ -29,7 +29,11 @@ public class JsonUtil {
      * jackson转换mapper
      * 网上说该mapper是线程安全的。可以使用单例模式
      */
-    public static final ObjectMapper mapper = new ObjectMapper();
+    public static final ObjectMapper mapper;
+
+    static {
+        mapper = new ObjectMapper();
+    }
 
     /**
      * 将json字符串（已知是一个对象类型的json数据）转化成集合对象

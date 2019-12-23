@@ -10,6 +10,7 @@ public class ParamUtil {
 
     /**
      * 获取参数
+     * 获取参数为：arg1_agr2_arg3类似的拼接参数
      * @param param 参数字符串
      * @return 参数数组
      */
@@ -45,6 +46,22 @@ public class ParamUtil {
             id = Integer.parseInt(s);
         } catch (NumberFormatException ignored) {}
         return id;
+    }
+
+    /**
+     * 获取enum类型
+     * 如果名称错误，则返回null
+     * @param type Enum类
+     * @param name 类型名称
+     * @param <T> T
+     * @return Enum
+     */
+    public static <T extends Enum<T>> T getType(Class<T> type, String name){
+        try {
+            return Enum.valueOf(type, name);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

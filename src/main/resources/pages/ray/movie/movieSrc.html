@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>电影大全</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/model.css}">
+    <link rel="stylesheet" th:href="@{/h5/video.css}">
+    <link rel="stylesheet" th:href="@{/css/ray/tv.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+
+<body>
+<div th:replace="/model/head::top"></div>
+<div class="contain">
+    <div class="box">
+
+    </div>
+</div>
+<div th:replace="/model/foot::foot"></div>
+<div th:replace="/model/etc::etc"></div>
+</body>
+<script th:src="@{/js/jquery-2.0.3.js}"></script>
+<script th:src="@{/h5/video.js}"></script>
+<script th:src="@{/h5/videojs-contrib-hls.js}"></script>
+<script th:inline="javascript">
+    $(function () {
+        var movie = [[${movie}]];
+        console.log(movie);
+    });
+</script>
+</html>

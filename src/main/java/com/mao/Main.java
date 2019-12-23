@@ -8,6 +8,7 @@ import com.mao.service.classical.BuddhistService;
 import com.mao.service.classical.IdiomService;
 import com.mao.service.color.ColorService;
 import com.mao.service.index.IndexService;
+import com.mao.service.ray.MovieService;
 import com.mao.service.ray.RayService;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
@@ -49,6 +50,11 @@ public class Main {
             path(Path.RAY.url(), () -> {
                 get(Path.BILI.url(), RayService::bilibili);
                 get(Path.TV.url(), RayService::tv);
+                path(Path.MOVIE.url(), () -> {
+                    get(Path.MOVIE_INDEX.url(), MovieService::movie);
+                    get(Path.MOVIE_LIST.url(), MovieService::movie2);
+                    get(Path.MOVIE_SRC.url(), MovieService::movieSrc);
+                });
             });
             path(Path.ABOUT.url(), () -> {
                 get(Path.ABOUT_PAGE.url(), AboutService::about);

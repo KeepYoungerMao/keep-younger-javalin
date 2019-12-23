@@ -10,6 +10,10 @@ public enum Path {
     RAY("ray",null),                                                        //射线 -- 分类
     BILI("bilibili","ray/bilibili.html"),                                   //B站
     TV("tv","ray/tv.html"),                                                 //电视
+    MOVIE("movie",null),                                                    //电影 -- 分类
+    MOVIE_INDEX("","ray/movie/movie.html"),                                 //电影
+    MOVIE_LIST(":filter","ray/movie/movie.html"),                           //电影
+    MOVIE_SRC(":id","ray/movie/movieSrc.html"),                             //电影详情
     ABOUT("about",null),                                                    //关于 -- 分类
     ABOUT_PAGE(":page","about/$.html"),                                     //关于
     FEEDBACK("feedback",null),                                              //反馈 -- 数据

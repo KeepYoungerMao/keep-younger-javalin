@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mao.mapper.ray.MovieMapper">
+
+    <select id="getMovies" parameterType="com.mao.entity.ray.movie.MovieParam"
+            resultType="com.mao.entity.ray.movie.SimpleMovie">
+        SELECT `id`,`name`,`image`,`type`,`time`,`place`,`weight`
+        FROM tt_movie_m3u8
+        WHERE `id` > 0
+        <if test="type_id > 0">
+            AND `type_id` = #{type_id}
+        </if>
+        <if test="place_id > 0">
+            AND `place_id` = #{place_id}
+        </if>
+        <if test="order == 1">
+            ORDER BY `id` ASC
+        </if>
+        <if test="order == 2">
+            ORDER BY `time` DESC
+        </if>
+        <if test="order == 3">
+            ORDER BY `count` DESC
+        </if>
+        LIMIT #{page},30
+    </select>
+
+    <select id="getMovieCount" parameterType="com.mao.entity.ray.movie.MovieParam"
+            resultType="java.lang.Integer">
+        SELECT COUNT(`id`) FROM tt_movie_m3u8
+        WHERE `id` > 0
+        <if test="type_id > 0">
+            AND `type_id` = #{type_id}
+        </if>
+        <if test="place_id > 0">
+            AND `place_id` = #{place_id}
+        </if>
+    </select>
+
+    <select id="getMovie" parameterType="java.lang.Integer" resultType="com.mao.entity.ray.movie.Movie">
+        SELECT `id`,`name`,`image`,`actor`,`type`,`time`,`place`,`weight`,`intro`,`m3u8`,`count`
+        FROM tt_movie_m3u8 WHERE `id` = #{id}
+    </select>
+
+</mapper>

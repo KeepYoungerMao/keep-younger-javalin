@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 返回体封装参数使用
  * @author mao by 14:29 2019/11/26
  */
 public class MapUtil {

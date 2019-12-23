@@ -1,4 +1,4 @@
-package com.mao.entity.ray;
+package com.mao.entity.ray.tv;
 
 import lombok.Getter;
 import lombok.Setter;
