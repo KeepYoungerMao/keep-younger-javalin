@@ -4,7 +4,10 @@ import com.mao.config.MybatisConfigure;
 import com.mao.config.Path;
 import com.mao.entity.ray.movie.*;
 import com.mao.mapper.ray.MovieMapper;
+import com.mao.util.AesUtil;
+import com.mao.util.JsonUtil;
 import com.mao.util.ParamUtil;
+import com.mao.util.SU;
 import io.javalin.http.Context;
 import org.apache.ibatis.session.SqlSession;
 
@@ -113,7 +116,9 @@ public class MovieService {
         param.setCount(count);
         param.setType_id(0);
         param.setPlace_id(0);
-        ctx.render(Path.MOVIE_INDEX.web(),addMap("movies",movies,"movieParam",param));
+        String aes = SU.getRandomString(16);
+        ctx.sessionAttribute("aes",aes);
+        ctx.render(Path.MOVIE_INDEX.web(),addMap("movies",movies,"movieParam", AesUtil.enCode(JsonUtil.obj2json(param),aes)));
     }
 
     /**

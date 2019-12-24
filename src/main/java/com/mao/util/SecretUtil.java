@@ -82,7 +82,7 @@ public class SecretUtil {
      * @param buf 二进制数据
      * @return String
      */
-    private static String parseByte2HexStr(byte[] buf) {
+    public static String parseByte2HexStr(byte[] buf) {
         StringBuilder sb = new StringBuilder();
         for (byte aBuf : buf) {
             String hex = Integer.toHexString(aBuf & 0xFF);
@@ -99,7 +99,7 @@ public class SecretUtil {
      * @param hexStr 16进制数据
      * @return 二进制数组
      */
-    private static byte[] parseHexStr2Byte(String hexStr) {
+    public static byte[] parseHexStr2Byte(String hexStr) {
         if (hexStr.length() < 1) {
             return null;
         }
@@ -172,10 +172,10 @@ public class SecretUtil {
     }
 
     public static void main(String[] args) {
-        String s = "1607702400000";
-        String key = "zX9xM9aL"+"avUUao8B2j"+"key";
-        String encrypt = encrypt(s, key, SecretEnum.AES);
-        System.out.println(encrypt.toLowerCase());
+        String a = "hello world";
+        String key = "aaa111bbb111ccc2";
+        String encrypt = encrypt(a, key, SecretEnum.AES);
+        System.out.println(encrypt);
     }
 
 }
