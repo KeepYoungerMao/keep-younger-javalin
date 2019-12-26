@@ -90,6 +90,9 @@ public class Main {
             });
         });
 
+        app.error(404,IndexService::error);
+        app.error(500,IndexService::error);
+
     }
 
 }

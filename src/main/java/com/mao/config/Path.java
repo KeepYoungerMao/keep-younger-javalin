@@ -38,8 +38,8 @@ public enum Path {
     BOOK_INDEX("","classical/book/book.html"),                              //古籍
     BOOK_LIST(":filter","classical/book/book.html"),                        //古籍
     BOOK_CHAPTER("chapter/:id","classical/book/chapter.html"),              //古籍章节
-    BOOK_SRC("chapter/src/:id","classical/book/src.html");                  //古籍章节详情
-
+    BOOK_SRC("chapter/src/:id","classical/book/src.html"),                  //古籍章节详情
+    ERROR(null,"error.html");
 
     private String url;     //链接
     private String web;     //地址

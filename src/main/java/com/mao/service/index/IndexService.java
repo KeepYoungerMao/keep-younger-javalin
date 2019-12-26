@@ -12,4 +12,8 @@ public class IndexService {
         ctx.render(Path.INDEX.web());
     }
 
+    public static void error(Context ctx){
+        ctx.render(Path.ERROR.web());
+    }
+
 }
