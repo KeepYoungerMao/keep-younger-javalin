@@ -1,7 +1,8 @@
 $(function () {
+    picClass = web_aes_de_def(picClass);
+    pics = web_aes_de_def(pics);
+    picParam = web_aes_de_def(picParam);
     picParam.page = picParam.page/40 + 1;
-    console.log(pics);
-    console.log(picParam);
     loadClass(picClass);
     picActive();
     loadPic();

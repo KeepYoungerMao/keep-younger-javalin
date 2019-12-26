@@ -38,7 +38,7 @@ public class BookService {
         int count = mapper.getBookCount(bookParam);
         session.close();
         bookParam.setTotal(count);
-        ctx.render(Path.BOOK_INDEX.web(), addMap("book",book,"bookParam",bookParam));
+        ctx.render(Path.BOOK_INDEX.web(), addMap(ctx,"book",book,"bookParam",bookParam));
     }
 
     public static void bookChapter(Context ctx){
@@ -48,7 +48,7 @@ public class BookService {
         Book book = mapper.getBook(id);
         List<BookChapter> chapter = mapper.getBookChapter(id);
         session.close();
-        ctx.render(Path.BOOK_CHAPTER.web(), addMap("book",book,"chapter",chapter));
+        ctx.render(Path.BOOK_CHAPTER.web(), addMap(ctx,"book",book,"chapter",chapter));
     }
 
     public static void chapter(Context ctx){
@@ -56,7 +56,7 @@ public class BookService {
         BookMapper mapper = session.getMapper(BookMapper.class);
         BookChapterSrc src = mapper.getBookChapterSrc(ParamUtil.getInt(ctx.pathParam("id")));
         session.close();
-        ctx.render(Path.BOOK_SRC.web(), addMap("src",src));
+        ctx.render(Path.BOOK_SRC.web(), addMap(ctx,"src",src));
     }
 
 }

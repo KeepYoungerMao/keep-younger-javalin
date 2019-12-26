@@ -24,7 +24,7 @@ public class RayService {
         TvMapper mapper = session.getMapper(TvMapper.class);
         List<M3u8> tvs = mapper.getTvs();
         session.close();
-        ctx.render(Path.TV.web(),addMap("tv",tvs));
+        ctx.render(Path.TV.web(),addMap(ctx,"tv",tvs));
     }
 
 }

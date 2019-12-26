@@ -40,7 +40,7 @@ public class BjxService {
         BjxMapper mapper = session.getMapper(BjxMapper.class);
         List<Bjx> bjx = mapper.getBjx(param);
         session.close();
-        ctx.render(Path.BJX_INDEX.web(),addMap("bjx",bjx,"bjxParam",param));
+        ctx.render(Path.BJX_INDEX.web(),addMap(ctx,"bjx",bjx,"bjxParam",param));
     }
 
     public static void bjxSrc(Context ctx){
@@ -48,7 +48,7 @@ public class BjxService {
         BjxMapper mapper = session.getMapper(BjxMapper.class);
         int id = ParamUtil.getInt(ctx.pathParam("id"));
         BjxSrc bjx = mapper.getBjxSrc(id);
-        ctx.render(Path.BJX_SRC.web(),addMap("bjx",bjx));
+        ctx.render(Path.BJX_SRC.web(),addMap(ctx,"bjx",bjx));
     }
 
 }

@@ -32,8 +32,10 @@
         var movieParam = [[${movieParam}]];
         console.log(movies);
         console.log(movieParam);
+        movies = web_aes_de_def(movies);
         movieParam = web_aes_de_def(movieParam);
         console.log(movieParam);
+        console.log(movies);
     });
 
 </script>

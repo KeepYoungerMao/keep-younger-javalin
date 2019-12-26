@@ -145,7 +145,7 @@
 <body>
 <div th:replace="model/head::top"></div>
 <div class="contain">
-    <div class="box">
+    <div class="box" th:data-aes="${session.aes}">
         <div class="bjx-class">
             <ul></ul>
         </div>
@@ -165,9 +165,13 @@
 </body>
 <script th:src="@{/js/jquery-2.0.3.js}"></script>
 <script th:src="@{/js/util/page.js}"></script>
+<script th:src="@{/js/util/web-aes-data_2019_12.js}"></script>
+<script th:src="@{/js/util/web-aes-data_2019_12-self.js}"></script>
 <script th:inline="javascript">
     var idioms = [[${idioms}]];
     var idiomParam = [[${idiomParam}]];
+    idioms = web_aes_de_def(idioms);
+    idiomParam = web_aes_de_def(idiomParam);
     idiomParam.page = (idiomParam.page <= 0) ? 1 : (idiomParam.page)/40+1;
     var py = ['A','B','C','D','E','F','G','H','J','K','L','M','N','O','P','Q','R','S','T','W','X','Y','Z'];
     console.log(idioms);

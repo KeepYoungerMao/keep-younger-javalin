@@ -52,7 +52,7 @@ public class IdiomService {
             param.setTotal(count);
         }
         session.close();
-        ctx.render(Path.IDIOM_INDEX.web(), addMap("idioms",idioms,"idiomParam",param));
+        ctx.render(Path.IDIOM_INDEX.web(), addMap(ctx,"idioms",idioms,"idiomParam",param));
     }
 
     public static void idiomSrc(Context ctx){
@@ -61,7 +61,7 @@ public class IdiomService {
         int id = ParamUtil.getInt(ctx.pathParam("id"));
         Idiom idiom = mapper.getIdiomSrc(id);
         session.close();
-        ctx.render(Path.IDIOM_SRC.web(), addMap("idiom",idiom));
+        ctx.render(Path.IDIOM_SRC.web(), addMap(ctx,"idiom",idiom));
     }
 
 }

@@ -46,7 +46,7 @@ public class ColorService {
         List<PicClass> picClass = getPicClass(mainClass, subClass);
         List<SimplePic> pics = mapper.getPic(picParam);
         session.close();
-        ctx.render(Path.PIC.web(),addMap("picClass",picClass,"pics",pics,"picParam",picParam));
+        ctx.render(Path.PIC.web(),addMap(ctx,"picClass",picClass,"pics",pics,"picParam",picParam));
     }
 
     private static List<PicClass> getPicClass(List<PicMainClass> mainClass, List<PicSubClass> subClass){
@@ -72,7 +72,7 @@ public class ColorService {
         int id = ParamUtil.getInt(ctx.pathParam("id"));
         Pic pic = mapper.getPicSrc(id);
         session.close();
-        ctx.render(Path.PIC_SRC.web(),addMap("pic",pic));
+        ctx.render(Path.PIC_SRC.web(),addMap(ctx,"pic",pic));
     }
 
 }

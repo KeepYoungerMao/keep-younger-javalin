@@ -1,5 +1,6 @@
 function web_aes_de_def(content) {
-    web_aes_de(content,$(".box").data("aes"));
+    var json = web_aes_de(content,$(".box").data("aes"));
+    return JSON.parse(json);
 }
 function web_aes_de(content, key){
     var sKey = CryptoJS.enc.Utf8.parse(key);

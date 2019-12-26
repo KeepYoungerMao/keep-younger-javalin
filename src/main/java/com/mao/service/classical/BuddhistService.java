@@ -16,6 +16,7 @@ import java.util.List;
 import static com.mao.util.MapUtil.addMap;
 
 /**
+ * 佛经
  * @author mao by 13:59 2019/12/2
  */
 public class BuddhistService {
@@ -25,7 +26,7 @@ public class BuddhistService {
         BuddhistMapper mapper = session.getMapper(BuddhistMapper.class);
         List<SimpleBuddhist> buddhist = mapper.getBuddhist();
         session.close();
-        ctx.render(Path.BUDDHIST_INDEX.web(),addMap("buddhist",buddhist));
+        ctx.render(Path.BUDDHIST_INDEX.web(),addMap(ctx,"buddhist",buddhist));
     }
 
     public static void buddhistChapter(Context ctx){
@@ -35,7 +36,7 @@ public class BuddhistService {
         Buddhist buddhist = mapper.getBuddhistSrc(id);
         List<BuddhistChapter> chapter = mapper.getBuddhistChapter(id);
         session.close();
-        ctx.render(Path.BUDDHIST_SRC.web(),addMap("buddhist",buddhist,"chapter",chapter));
+        ctx.render(Path.BUDDHIST_SRC.web(),addMap(ctx,"buddhist",buddhist,"chapter",chapter));
     }
 
     public static void chapter(Context ctx){
@@ -44,7 +45,7 @@ public class BuddhistService {
         int id = ParamUtil.getInt(ctx.pathParam("id"));
         BuddhistChapterSrc src = mapper.getBuddhistChapterSrc(id);
         session.close();
-        ctx.render(Path.BUDDHIST_CHAPTER.web(),addMap("chapter",src));
+        ctx.render(Path.BUDDHIST_CHAPTER.web(),addMap(ctx,"chapter",src));
     }
 
 }
